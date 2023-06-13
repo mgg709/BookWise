@@ -16,3 +16,10 @@ We work with two different datasets containing the same books, what we do is a j
 - Book_description
 - Image_link
 - Star_rating
+
+## Possible questions
+- What genres of books are you interested in?
+- Do you have any favourite authors?
+- Is there a specific theme you are interested in?
+- Do you have preferences regarding the length of the book?
+- What was the last book you read?
