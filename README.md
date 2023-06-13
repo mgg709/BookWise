@@ -1,7 +1,7 @@
 # BookWise
 Crud APP book shop
 
-## Datasets
+## Datasets
 - https://www.kaggle.com/datasets/jalota/books-dataset
 - https://www.kaggle.com/datasets/sbonelondhlazi/bookstore-dataset
 ## Labels Db
