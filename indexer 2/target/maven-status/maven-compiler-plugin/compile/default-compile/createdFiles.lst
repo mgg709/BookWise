@@ -1,0 +1,5 @@
+com/example/indexer/IndexerApplication.class
+com/example/indexer/BookRepository.class
+com/example/indexer/BookController.class
+com/example/indexer/ElasticsearchApplication.class
+com/example/indexer/Book.class
