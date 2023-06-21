@@ -41,7 +41,7 @@
     transition: all 0.5s ease-in;
 } 
 .selling-books-title:hover::after{
-    width: 120px;
+    width: 118px;
     height: 2px;
     background-color: #EB5E28;
 }
@@ -63,7 +63,7 @@
     transition: all 0.5s ease-in;
 } 
 .recommend-books-title:hover::after{
-    width: 156px;
+    width: 160px;
     height: 2px;
     background-color: #EB5E28;
 }

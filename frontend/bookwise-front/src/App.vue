@@ -1,11 +1,13 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import NavigationBar from './components/NavigationBar.vue'
 </script>
 
 <template>
+  
   <section class="content">
-    <NavigationBar></NavigationBar>
+    <NavigationBar class="navbar"></NavigationBar>
     <RouterView></RouterView>
   </section>
   
@@ -20,4 +22,9 @@ import HelloWorld from './components/HelloWorld.vue'
   width: 100%;
   height: 100%;
 }
+
+.navbar{
+  top: 0;
+}
+
 </style>
