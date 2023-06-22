@@ -52,19 +52,18 @@ import TheWelcome from '../components/TheWelcome.vue'
 }
 
 #parallelogram-right img{
-  width: 60%;
+  width: 55%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
 #parallelogram-left {
   display: flex;
-    width: 100vw;
-    height: 50vh;
-    background: var(--color-black-light);
-    overflow:hidden;
-    position:relative;
+  width: 100vw;
+  height: 50vh;
+  background: var(--color-black-light);
+  overflow:hidden;
+  position:relative;
 }
 
 .text-banner-home{
