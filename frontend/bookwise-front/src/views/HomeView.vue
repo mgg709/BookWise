@@ -1,6 +1,5 @@
 <script setup>
-import NavigationBar from '../components/NavigationBar.vue';
-import TheWelcome from '../components/TheWelcome.vue'
+import BookCard from '../components/BookCard.vue'
 </script>
 
 <template>
@@ -13,6 +12,12 @@ import TheWelcome from '../components/TheWelcome.vue'
     <div id="parallelogram-right">
       <img src="../assets/banner-bg.jpeg" alt="">
     </div>
+  </div>
+  <div class="book-list">
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
   </div>  
   
 </div>
@@ -22,12 +27,13 @@ import TheWelcome from '../components/TheWelcome.vue'
 .container-home{
     overflow:hidden;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 #parallelogram-right {
   display: flex;
-    width: 100vw;
+    width: 100%;
     height: 50vh;
 
     overflow:hidden;
@@ -59,8 +65,8 @@ import TheWelcome from '../components/TheWelcome.vue'
 
 #parallelogram-left {
   display: flex;
-  width: 100vw;
-  height: 50vh;
+  width: 100%;
+  height: 45vh;
   background: var(--color-black-light);
   overflow:hidden;
   position:relative;
@@ -77,7 +83,15 @@ import TheWelcome from '../components/TheWelcome.vue'
 }
 
 .text-banner-home span:nth-child(2){
-  font-size: 150px;
+  font-size: 120px;
   color: var(--color-orange-dark);
+}
+
+.book-list{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 </style>
