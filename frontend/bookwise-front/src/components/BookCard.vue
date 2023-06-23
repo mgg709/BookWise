@@ -44,19 +44,47 @@
 .rating-book-row{
     display: flex;
     width: 100%;
+    align-items: center;
+    justify-content: center;
+    transform: rotateY(180deg);
 }
 
 .rating-book-row input{
+    display: none;
 }
 
 .rating-book-row label{
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     width: 20%;
-    background: #ccc;
+    align-self: center;
 } 
 
-.rating-book-row label::before{
-     
+.rating-book-row label:before{
+    content: "\f005";
+    font-family: fontAwesome;
+    position: relative;
+    font-size: 20px;
+    color: #101010;
+}
+
+.rating-book-row label:after{
+    content: "\f005";
+    font-family: fontAwesome;
+    position: absolute;
+    font-size: 20px;
+    color: #1f9cff;
+    opacity: 0;
+    transition: .5s;
+    text-shadow: 0 2px 5px rgba(0,0,0,.5);
+}
+
+.rating-book-row label:hover:after,
+.rating-book-row label:hover ~ label:after,
+.rating-book-row input:checked ~ label:after
+{
+    opacity: 1;
 }
 </style>
