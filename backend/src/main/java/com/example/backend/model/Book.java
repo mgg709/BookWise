@@ -1,4 +1,4 @@
-package com.example.backend.model;
+package com.example.backend.Model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;

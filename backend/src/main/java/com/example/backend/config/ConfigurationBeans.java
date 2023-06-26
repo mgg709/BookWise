@@ -1,4 +1,4 @@
-package com.example.backend.config;
+package com.example.backend.Config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.elasticsearch.client.ClientConfiguration;

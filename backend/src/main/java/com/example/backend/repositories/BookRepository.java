@@ -1,9 +1,10 @@
-package com.example.backend.repositories;
+package com.example.backend.Repositories;
 
 import java.util.List;
 
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
-import com.example.backend.model.Book;
+
+import com.example.backend.Model.Book;
 
 
 public interface BookRepository extends ElasticsearchRepository<Book, String> {

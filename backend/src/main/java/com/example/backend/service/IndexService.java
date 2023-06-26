@@ -1,4 +1,4 @@
-package com.example.backend.service;
+package com.example.backend.Service;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -9,10 +9,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.stereotype.Service;
+
+import com.example.backend.Model.Book;
+import com.example.backend.Repositories.BookRepository;
+
 import org.springframework.data.elasticsearch.core.Range;
 
-import com.example.backend.model.Book;
-import com.example.backend.repositories.BookRepository;
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch.core.BulkRequest;
+import co.elastic.clients.elasticsearch.core.BulkResponse;
+import co.elastic.clients.elasticsearch.core.bulk.BulkResponseItem;
 
 @Service
 public class IndexService {
@@ -20,12 +27,32 @@ public class IndexService {
     private static final String PATH = "backend/Books_dataset.csv";
     @Autowired
     private BookRepository bookRepository;
+    private ElasticsearchClient elasticsearchClient;
 
     //private ElasticsearchOperations elasticsearchOperations;
 
     public IndexService(BookRepository bookRepository, ElasticsearchOperations elasticsearchOperations){
         this.bookRepository = bookRepository;
         //this.elasticsearchOperations = elasticsearchOperations;
+    }
+
+    public String indexingBooks() throws ElasticsearchException, IOException{
+        List<Book> books = createAndGetBooks();
+        BulkRequest.Builder bulkRequest = new BulkRequest.Builder();
+        for(Book book : books){
+            bulkRequest.operations(op -> op.index(idx -> idx.index("book").id(book.getId().toString()).document(book)));
+        }
+
+        BulkResponse bulkResponse = elasticsearchClient.bulk(bulkRequest.build());
+
+        if(bulkResponse.errors()){
+            for(BulkResponseItem item : bulkResponse.items()){
+                if(item.error()!=null){
+                    return item.error().reason();
+                }
+            }
+        }
+        return "ALL INDEXING;";
     }
 
     public List<Book> createAndGetBooks() throws IOException {
