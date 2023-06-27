@@ -1,5 +1,6 @@
 <script setup>
 import BookCard from '../components/BookCard.vue'
+import Footer from '../components/Footer.vue'
 </script>
 
 <template>
@@ -33,6 +34,7 @@ import BookCard from '../components/BookCard.vue'
       <BookCard class="book"></BookCard>
     </div>
   </div>
+  <Footer></Footer>
 </template>
   
   <style>
@@ -75,6 +77,11 @@ import BookCard from '../components/BookCard.vue'
   margin-left: 2.5px;
   margin-right: 2.5px;
   padding: 15px 30px;
+}
+
+Footer{
+  width: 100%;
+  text-align: center;
 }
 
   </style>

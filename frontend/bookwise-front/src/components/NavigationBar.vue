@@ -84,6 +84,4 @@
     align-items: center;
     width: 15%;
 }
-
-
 </style>
