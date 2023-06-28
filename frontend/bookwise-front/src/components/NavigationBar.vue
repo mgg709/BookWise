@@ -3,17 +3,37 @@
 </script>
 <template>
     <div class="content-bar">
-        <span>logo</span>
-        <span class="selling-books-title">Top selling books</span>
+        <span class="logo" @click="redirectToIndex">logo</span>
+        <span class="selling-books-title" @click="redirectToSellings">Top selling books</span>
         <span class="recommend-books-title">Recommend me a book</span>
         <input type="text" class="search-input" placeholder="Título...">     
         <div class="login-buttons">
-            <button>Sign in</button>
-            <button>Sign up</button>
+            <button @click="redirectToLogIn">Sign in</button>
+            <button @click="redirectToSignUp">Sign up</button>
         </div>
        
     </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    redirectToLogIn() {
+      this.$router.push('/login');
+    },
+    redirectToSellings(){
+        this.$router.push('/selling');
+    },
+    redirectToIndex(){
+        this.$router.push('/');
+    },
+    redirectToSignUp(){
+        this.$router.push('/signup');
+    }
+  }
+}
+</script>
+
 <style scoped>
 .content-bar {
     display: flex;
@@ -28,7 +48,8 @@
     transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-.selling-books-title:hover{
+.selling-books-title:hover,
+.logo:hover{
     cursor: pointer;
 }
 

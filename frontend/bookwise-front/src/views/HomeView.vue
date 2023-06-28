@@ -20,6 +20,31 @@ import Footer from '../components/Footer.vue'
     <BookCard></BookCard>
     <BookCard></BookCard>
   </div>
+  <div class="book-list">
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+  </div>
+  <div class="book-list">
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+  </div>
+  <div class="book-list">
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+  </div>
+  <div class="book-list">
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+  </div>
+  <button id="load-more">Load more</button>
 </div>
 <Footer class="footer"></Footer>
 </template>
@@ -99,5 +124,9 @@ import Footer from '../components/Footer.vue'
 .footer{
   width: 100%;
   text-align: center;
+}
+
+#load-more{
+  margin-bottom: 15px;
 }
 </style>
