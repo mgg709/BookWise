@@ -1,5 +1,6 @@
 <script setup>
 import BookCard from '../components/BookCard.vue'
+import Footer from '../components/Footer.vue'
 </script>
 
 <template>
@@ -18,9 +19,34 @@ import BookCard from '../components/BookCard.vue'
     <BookCard></BookCard>
     <BookCard></BookCard>
     <BookCard></BookCard>
-  </div>  
-  
+  </div>
+  <div class="book-list">
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+  </div>
+  <div class="book-list">
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+  </div>
+  <div class="book-list">
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+  </div>
+  <div class="book-list">
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+    <BookCard></BookCard>
+  </div>
+  <button id="load-more">Load more</button>
 </div>
+<Footer class="footer"></Footer>
 </template>
 
 <style>
@@ -93,5 +119,14 @@ import BookCard from '../components/BookCard.vue'
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+}
+
+.footer{
+  width: 100%;
+  text-align: center;
+}
+
+#load-more{
+  margin-bottom: 15px;
 }
 </style>
