@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-    <div class="container-book-card">
+    <div class="container-book-card" @click="redirectToBook">
         <img src="../assets/template-book-cover.jpeg" alt="Portada del libro">
         <p>Interesting book title</p>
         <div class="rating-book-row">
@@ -14,6 +14,16 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    redirectToBook() {
+      this.$router.push('/book');
+    }
+  }
+}
+</script>
 
 <style>
 
