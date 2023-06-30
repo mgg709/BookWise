@@ -28,7 +28,7 @@ export default {
 <style>
 
 .container-book-card{
-    width:15%;
+    width:100%;
     display: flex;
     flex-direction: column;
     align-items: center;

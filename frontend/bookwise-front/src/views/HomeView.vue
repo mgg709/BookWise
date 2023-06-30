@@ -15,10 +15,10 @@ import Footer from '../components/Footer.vue'
     </div>
   </div>
   <div class="book-list">
-    <BookCard></BookCard>
-    <BookCard></BookCard>
-    <BookCard></BookCard>
-    <BookCard></BookCard>
+    <BookCard class="book-card"></BookCard>
+    <BookCard class="book-card"></BookCard>
+    <BookCard class="book-card"></BookCard>
+    <BookCard class="book-card"></BookCard>
   </div>
   <div class="book-list">
     <BookCard></BookCard>
@@ -121,6 +121,7 @@ import Footer from '../components/Footer.vue'
   justify-content: space-evenly;
 }
 
+
 .footer{
   width: 100%;
   text-align: center;
@@ -128,5 +129,9 @@ import Footer from '../components/Footer.vue'
 
 #load-more{
   margin-bottom: 15px;
+}
+
+.book-card{
+  width: 20%;
 }
 </style>
