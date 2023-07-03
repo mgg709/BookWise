@@ -7,31 +7,31 @@ import Footer from '../components/Footer.vue'
   <h1>Top selling books</h1>
   <div class="top-sellings-books">
     <div class="layer-list">
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
     </div>
   </div>
   <h1>Top best rated</h1>
   <div class="top-best-rated">
     <div class="layer-list">
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
-      <BookCard class="book"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
+      <BookCard imageName="template-book-cover"></BookCard>
     </div>
   </div>
   <Footer></Footer>
@@ -71,12 +71,6 @@ import Footer from '../components/Footer.vue'
   border: 2px solid;
   display: flex;
   overflow-x: auto;
-}
-
-.book{
-  margin-left: 2.5px;
-  margin-right: 2.5px;
-  padding: 15px 30px;
 }
 
 Footer{

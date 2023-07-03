@@ -1,7 +1,9 @@
-<script setup></script>
+<script setup>
+import Button from "../components/Button.vue"
+</script>
 
 <template>
-    <div class="container-book-card" @click="redirectToBook">
+    <!--div class="container-book-card">
         <img src="../assets/template-book-cover.jpeg" alt="Portada del libro">
         <p>Interesting book title</p>
         <div class="rating-book-row">
@@ -12,14 +14,33 @@
             <input type="radio" name="star" id="star5"><label for="star5"></label>
             <span></span>
         </div>
-    </div>
+    </div-->
+    <section class="container-book-card">
+        <img :src= "`src/assets/${imageName}.jpeg`" alt="Portada del libro">
+        <p>Interesting book title</p>
+        <section class="rating-book-row">
+            <input type="radio" name="star" id="star1"><label for="star1"></label>
+            <input type="radio" name="star" id="star2"><label for="star2"></label>
+            <input type="radio" name="star" id="star3"><label for="star3"></label>
+            <input type="radio" name="star" id="star4"><label for="star4"></label>
+            <input type="radio" name="star" id="star5"><label for="star5"></label>
+        </section>
+        <Button textButton="Read more" @click="redirectToBook"></Button>
+    </section>
 </template>
 
 <script>
 export default {
+  name: "BookCard",
   methods: {
     redirectToBook() {
       this.$router.push('/book');
+    }
+  },
+  props:{
+    imageName:{
+        type: String,
+        required: true
     }
   }
 }
@@ -37,13 +58,18 @@ export default {
     border-radius: 5px;
     box-shadow: 0px 0px 7px gray;
     padding: 10px 0px;
-    margin:0px;
+    margin:0px;*/
+    max-height: 100x;
+    border: 2px solid;
+    display: flex;
+    background-color: gray;
+    flex-direction: column;
 }
 
 .container-book-card img{
-    width: 60%;
-    border-radius: 5px;
-    padding-top: 20px;
+    object-fit: cover;
+    width: 250px;
+    height: 350px;
 }
 
 .container-book-card p{
