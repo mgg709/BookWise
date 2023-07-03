@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import Button from "../components/Button.vue"
+</script>
 
 <template>
     <div class="form-body">
@@ -8,7 +10,7 @@
             <input class="input" type="text" placeholder="Username">
             <input class="input" type="password" placeholder="Password">
             <input class="input" type="password" placeholder="Repeat password">
-            <button>Sing Up</button>
+            <Button textButton="Submit"></Button>
         </form>
     </div>
 </template>

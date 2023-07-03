@@ -1,6 +1,7 @@
 <script setup>
 import BookCard from '../components/BookCard.vue'
 import Footer from '../components/Footer.vue'
+import Button from "../components/Button.vue"
 </script>
 
 <template>
@@ -15,36 +16,36 @@ import Footer from '../components/Footer.vue'
     </div>
   </div>
   <div class="book-list">
-    <BookCard></BookCard>
-    <BookCard></BookCard>
-    <BookCard></BookCard>
-    <BookCard></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
   </div>
   <div class="book-list">
-    <BookCard></BookCard>
-    <BookCard></BookCard>
-    <BookCard></BookCard>
-    <BookCard></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
   </div>
   <div class="book-list">
-    <BookCard></BookCard>
-    <BookCard></BookCard>
-    <BookCard></BookCard>
-    <BookCard></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
   </div>
   <div class="book-list">
-    <BookCard></BookCard>
-    <BookCard></BookCard>
-    <BookCard></BookCard>
-    <BookCard></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
   </div>
   <div class="book-list">
-    <BookCard></BookCard>
-    <BookCard></BookCard>
-    <BookCard></BookCard>
-    <BookCard></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
   </div>
-  <button id="load-more">Load more</button>
+  <Button id="load-more" textButton="Load more"></Button>
 </div>
 <Footer class="footer"></Footer>
 </template>
@@ -56,6 +57,7 @@ import Footer from '../components/Footer.vue'
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100vw;
 }
 #parallelogram-right {
   display: flex;
