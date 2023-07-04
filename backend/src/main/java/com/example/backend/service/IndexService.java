@@ -1,4 +1,4 @@
-package com.example.backend.Service;
+package com.example.backend.service;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.stereotype.Service;
 
-import com.example.backend.Model.Book;
-import com.example.backend.Repositories.BookRepository;
+import com.example.backend.model.Book;
+import com.example.backend.repositories.BookRepository;
 
 import org.springframework.data.elasticsearch.core.Range;
 
