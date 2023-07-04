@@ -123,6 +123,7 @@ import Button from "../components/Button.vue"
   justify-content: space-evenly;
 }
 
+
 .footer{
   width: 100%;
   text-align: center;
@@ -130,5 +131,9 @@ import Button from "../components/Button.vue"
 
 #load-more{
   margin-bottom: 15px;
+}
+
+.book-card{
+  width: 20%;
 }
 </style>
