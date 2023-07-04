@@ -4,6 +4,7 @@
         <span>What are your favourite genres?</span>
         <input type="text">
     </div>
+    <RouterLink to="/solution"><button>Recommend</button></RouterLink>
 </template>
 <script>
 </script>
@@ -22,5 +23,6 @@
     & span{
         margin-bottom: 20px;
     }
+    margin-bottom: 30px;
 }
 </style>
