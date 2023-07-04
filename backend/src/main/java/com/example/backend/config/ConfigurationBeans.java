@@ -6,9 +6,6 @@ import org.springframework.data.elasticsearch.client.ClientConfiguration;
 import org.springframework.data.elasticsearch.client.elc.ElasticsearchConfiguration;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
-import com.example.backend.model.Book;
-
-
 @Configuration
 @EnableElasticsearchRepositories(basePackages = "com.example.backend.repositories")
 @ComponentScan(basePackages = { "com.example.backend" })

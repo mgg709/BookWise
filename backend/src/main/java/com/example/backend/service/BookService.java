@@ -14,9 +14,9 @@ import com.example.backend.repositories.BookRepository;
 
 @Service
 public class BookService {
-    
+
     private final BookRepository bookRepository;
-    
+
     public BookService(BookRepository bookRepository){
         this.bookRepository = bookRepository;
     }
@@ -32,14 +32,14 @@ public class BookService {
     public List<Book> createAndGetBooks() throws IOException {
             BufferedReader br = null;
             List<Book> books = new ArrayList<Book>();
-    
+
             try {
                 br = new BufferedReader(new FileReader("src/main/java/com/example/backend/dataset.csv"));
                 //Nos saltamos la primera línea para que no lea las labels del dataset
                 String line = br.readLine();
                 //Primer libro
                 line = br.readLine();
-                int index = 0;
+                // int index = 0;
                 while (null != line) {
 
                     String[] libro = line.split(";");
@@ -56,7 +56,7 @@ public class BookService {
                         books.add(book);
                         System.out.println(book.toString());
                     }
-                    index++;
+                    // index++;
                     line = br.readLine();
                 }
             } catch (Exception e) {
@@ -68,7 +68,7 @@ public class BookService {
             }
             return books;
         }
-    
+
         public void indexBooks() throws IOException{
             List<Book> books = this.createAndGetBooks();
             bookRepository.saveAll(books);
@@ -77,5 +77,5 @@ public class BookService {
         public List<Book> findAll(){
             return bookRepository.findAll();
         }
-        
+
 }
