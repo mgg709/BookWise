@@ -1,4 +1,4 @@
-package com.example.backend.Repositories;
+package com.example.backend.repositories;
 
 import java.util.List;
 
