@@ -59,9 +59,9 @@ export default {
     border-radius: 5px;
     box-shadow: 0px 0px 7px gray;
     padding: 10px 0px;
-    margin:0px;*/
+    margin:0px;
     max-height: 100x;
-    border: 2px solid;
+    border: 2px solid gray;
     display: flex;
     background-color: gray;
     flex-direction: column;
