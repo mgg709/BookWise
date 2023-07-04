@@ -1,5 +1,5 @@
 <script setup>
-
+import Button from "../components/Button.vue"
 </script>
 <template>
     <div class="content-bar">
@@ -8,8 +8,8 @@
         <span class="recommend-books-title">Recommend me a book</span>
         <input type="text" class="search-input" placeholder="Título...">     
         <div class="login-buttons">
-            <button @click="redirectToLogIn">Sign in</button>
-            <button @click="redirectToSignUp">Sign up</button>
+            <Button textButton="Sign in" @click="redirectToLogIn"></Button>
+            <Button textButton="Sign up" @click="redirectToSignUp"></Button>
         </div>
        
     </div>

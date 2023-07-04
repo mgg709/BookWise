@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import Button from "../components/Button.vue"
+</script>
 
 <template>
     <div class="form-body">
@@ -6,7 +8,7 @@
         <form class="login-form">
             <input class="input" type="text" placeholder="Email or username">
             <input class="input" type="password" placeholder="Password">
-            <button>Log in</button>
+            <Button textButton="Submit"></Button>
         </form>
     </div>
 </template>
