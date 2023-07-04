@@ -3,9 +3,10 @@ import Button from "../components/Button.vue"
 </script>
 
 <template>
-    <!--div class="container-book-card">
-        <img src="../assets/template-book-cover.jpeg" alt="Portada del libro">
-        <p>Interesting book title</p>
+    <div class="container-book-card" >
+        <div class="prueba" @click="redirectToBook"><img src="../assets/template-book-cover.jpeg" alt="Portada del libro" >
+        <p>Interesting book title</p></div>
+        
         <div class="rating-book-row">
             <input type="radio" name="star" id="star1"><label for="star1"></label>
             <input type="radio" name="star" id="star2"><label for="star2"></label>
@@ -47,6 +48,14 @@ export default {
 </script>
 
 <style>
+
+.prueba{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
 
 .container-book-card{
     width:100%;
