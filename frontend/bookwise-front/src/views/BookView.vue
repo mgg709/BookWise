@@ -37,6 +37,7 @@ import ReviewCard from '../components/ReviewCard.vue'
   flex-direction: row;
   margin-top: 20px;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .book-details{
