@@ -1,5 +1,5 @@
 <template>
-    <div class="container-book-card" >
+    <div class="container-book-card" :style="{width: widthSize}">
         <img src="../assets/template-book-cover.jpeg" alt="Portada del libro" @click="redirectToBook">
         <p>Interesting book title</p>
         <div class="rating-book-row">
@@ -18,7 +18,11 @@ export default {
         bookStars: {
             type: Number,
             required: true
-        }
+        },
+        widthSize: {
+            type: String,
+            default: "100%"
+        },
     },
     methods: {
         redirectToBook() {
