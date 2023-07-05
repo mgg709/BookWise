@@ -16,12 +16,6 @@ import Button from "../components/Button.vue"
     </div>
   </div>
   <div class="book-list">
-    <BookCard imageName="template-book-cover" class="book-card"></BookCard>
-    <BookCard imageName="template-book-cover" class="book-card"></BookCard>
-    <BookCard imageName="template-book-cover" class="book-card"></BookCard>
-    <BookCard imageName="template-book-cover" class="book-card"></BookCard>
-  </div>
-  <div class="book-list">
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
@@ -32,14 +26,36 @@ import Button from "../components/Button.vue"
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
-  </div>
-  <div class="book-list">
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
   </div>
   <div class="book-list">
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+  </div>
+  <div class="book-list">
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+  </div>
+  <div class="book-list">
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>

@@ -1,3 +1,6 @@
+<script setup>
+import Button from "../components/Button.vue"
+</script>
 <template>
     <div class="content-bar">
         <span class="logo" @click="redirectToIndex">logo</span>

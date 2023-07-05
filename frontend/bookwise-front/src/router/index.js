@@ -51,6 +51,16 @@ const router = createRouter({
       path: "/solution",
       name: "solution",
       component: () => import('../views/SolutionView.vue')
+    },
+    {
+      path: "/review",
+      name: "review",
+      component: () => import('../views/Profile.review.view.vue')
+    },
+    {
+      path: "/favourite",
+      name: "favourite",
+      component: () => import('../views/Profile.favourite.view.vue')
     }
   ]
 })
