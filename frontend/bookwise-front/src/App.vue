@@ -1,7 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 import NavigationBar from './components/NavigationBar.vue'
+import Footer from './components/Footer.vue'
 </script>
 
 <template>
@@ -9,6 +9,7 @@ import NavigationBar from './components/NavigationBar.vue'
   <section class="content">
     <NavigationBar class="navbar"></NavigationBar>
     <RouterView></RouterView>
+    <Footer class="footer"></Footer>
   </section>
   
 </template>
@@ -25,6 +26,10 @@ import NavigationBar from './components/NavigationBar.vue'
 
 .navbar{
   top: 0;
+}
+.footer{
+  width: 100%;
+  text-align: center;
 }
 
 </style>
