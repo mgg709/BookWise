@@ -5,8 +5,8 @@
         <RouterLink class="recommend-books-title" to="/recommendation">Recommend me a book</RouterLink>
         <input type="text" class="search-input" placeholder="Título...">     
         <div class="login-buttons">
-            <Button textButton="Sign in" @click="redirectToLogIn"></Button>
-            <Button textButton="Sign up" @click="redirectToSignUp"></Button>
+            <NormalButton textButton="Sign in" @click="redirectToLogIn"></NormalButton>
+            <NormalButton textButton="Sign up" @click="redirectToSignUp"></NormalButton>
         </div>
        
     </div>
@@ -14,6 +14,7 @@
 
 <script>
 import { RouterLink } from 'vue-router';
+import NormalButton from './NormalButton.vue';
 export default {
   methods: {
     redirectToLogIn() {
