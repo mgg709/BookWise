@@ -1,17 +1,19 @@
 <template>
-    <button class="button--class" >
-        <span class="tooltip">{{ textButton }}</span>
-    </button>
+    <button>{{ textButton }} </button>
+        <!-- <span class="tooltip">{{ textButton }}</span> -->
+    
 </template>
 
 <script>
 export default{
-    name: "Button",
+    name: "NormalButton",
     props:{
         textButton:{
             type: String,
             required: true
-        }
-    }
+        },
+    }, 
 }
 </script>
+<style>
+</style>

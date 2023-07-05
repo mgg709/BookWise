@@ -105,5 +105,6 @@ export default {
     justify-content: space-evenly;
     align-items: center;
     width: 15%;
+    height: 100%;
 }
 </style>
