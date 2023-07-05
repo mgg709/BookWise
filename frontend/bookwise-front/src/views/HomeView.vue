@@ -15,10 +15,8 @@ import NormalButton from '../components/NormalButton.vue';
     </div>
   </div>
   <div class="book-list">
-    <BookCard imageName="template-book-cover" class="book-card"></BookCard>
-    <BookCard imageName="template-book-cover" class="book-card"></BookCard>
-    <BookCard imageName="template-book-cover" class="book-card"></BookCard>
-    <BookCard imageName="template-book-cover" class="book-card"></BookCard>
+    <BookCard imageName="template-book-cover" bookStars=2 class="book-card"></BookCard>
+    <BookCard imageName="template-book-cover" bookStars=4 class="book-card"></BookCard>
   </div>
   <NormalButton id="load-more" textButton="Load more"></NormalButton>
 </div>
@@ -32,6 +30,7 @@ import NormalButton from '../components/NormalButton.vue';
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width:100%;
 }
 #parallelogram-right {
     display: flex;
@@ -108,7 +107,4 @@ import NormalButton from '../components/NormalButton.vue';
   margin-bottom: 15px;
 }
 
-.book-card{
-  width: 20%;
-}
 </style>
