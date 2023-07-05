@@ -5,7 +5,7 @@ import Button from "../components/Button.vue"
     <div class="content-bar">
         <span class="logo" @click="redirectToIndex">logo</span>
         <span class="selling-books-title" @click="redirectToSellings">Top selling books</span>
-        <span class="recommend-books-title">Recommend me a book</span>
+        <RouterLink class="recommend-books-title" to="/recommendation">Recommend me a book</RouterLink>
         <input type="text" class="search-input" placeholder="Título...">     
         <div class="login-buttons">
             <Button textButton="Sign in" @click="redirectToLogIn"></Button>
@@ -16,6 +16,7 @@ import Button from "../components/Button.vue"
 </template>
 
 <script>
+import { RouterLink } from 'vue-router';
 export default {
   methods: {
     redirectToLogIn() {
@@ -42,6 +43,7 @@ export default {
     width: 100%;
     height: 10vh;
     padding: 0 2rem;
+    
 }
 
 .selling-books-title{
@@ -69,6 +71,7 @@ export default {
 
 .recommend-books-title{
     transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    color: var(--color-text);
 }
 
 .recommend-books-title:hover{

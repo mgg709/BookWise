@@ -26,8 +26,6 @@ import Button from "../components/Button.vue"
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
-  </div>
-  <div class="book-list">
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
@@ -38,13 +36,32 @@ import Button from "../components/Button.vue"
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
   </div>
   <div class="book-list">
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
     <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
   </div>
+  <div class="book-list">
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+    <BookCard imageName="template-book-cover"></BookCard>
+  </div>
+  <Button id="load-more" textButton="Load more"></Button>
   <Button id="load-more" textButton="Load more"></Button>
 </div>
 <Footer class="footer"></Footer>
