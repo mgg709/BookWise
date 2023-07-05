@@ -1,7 +1,6 @@
 <script setup>
 import BookCard from '../components/BookCard.vue'
-import Footer from '../components/Footer.vue'
-import Button from "../components/Button.vue"
+import NormalButton from '../components/NormalButton.vue';
 </script>
 
 <template>
@@ -21,33 +20,9 @@ import Button from "../components/Button.vue"
     <BookCard imageName="template-book-cover" class="book-card"></BookCard>
     <BookCard imageName="template-book-cover" class="book-card"></BookCard>
   </div>
-  <div class="book-list">
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-  </div>
-  <div class="book-list">
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-  </div>
-  <div class="book-list">
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-  </div>
-  <div class="book-list">
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-  </div>
-  <Button id="load-more" textButton="Load more"></Button>
+  <NormalButton id="load-more" textButton="Load more"></NormalButton>
 </div>
-<Footer class="footer"></Footer>
+
 </template>
 
 <style>
@@ -57,10 +32,9 @@ import Button from "../components/Button.vue"
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100vw;
 }
 #parallelogram-right {
-  display: flex;
+    display: flex;
     width: 100%;
     height: 50vh;
 
@@ -86,15 +60,16 @@ import Button from "../components/Button.vue"
 }
 
 #parallelogram-right img{
-  width: 55%;
+  width: 60%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 #parallelogram-left {
   display: flex;
   width: 100%;
-  height: 45vh;
+  height: 50vh;
   background: var(--color-black-light);
   overflow:hidden;
   position:relative;
