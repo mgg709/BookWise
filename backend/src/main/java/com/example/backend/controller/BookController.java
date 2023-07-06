@@ -3,6 +3,7 @@ package com.example.backend.controller;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.data.domain.PageImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,5 +37,11 @@ public class BookController {
     public List<Book> findAll(){
         return bookService.findAll();
     }
+
+    @GetMapping("/getTwentyBooks/{page}")
+    public PageImpl<Book> getTwentyBooks(@PathVariable final int page){
+        return bookService.getTwentyBooks(page);
+    }
+
 
 }
