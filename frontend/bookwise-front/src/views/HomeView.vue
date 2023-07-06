@@ -10,10 +10,10 @@
     </div>
   </div>
   <div class="book-list">
-    <BookCard imageName="template-book-cover" bookStars=2 widthSize="20%" class="book-card"></BookCard>
-    <BookCard imageName="template-book-cover" bookStars=4 widthSize="20%" class="book-card"></BookCard>
-    <BookCard imageName="template-book-cover" bookStars=2 widthSize="20%" class="book-card"></BookCard>
-    <BookCard imageName="template-book-cover" bookStars=4  widthSize="20%" class="book-card"></BookCard>
+    <BookCard imageName="template-book-cover" bookStars=2 widthSize="100%" class="book-card"></BookCard>
+    <BookCard imageName="template-book-cover" bookStars=4 widthSize="100%" class="book-card"></BookCard>
+    <BookCard imageName="template-book-cover" bookStars=2 widthSize="100%" class="book-card"></BookCard>
+    <BookCard imageName="template-book-cover" bookStars=4  widthSize="100%" class="book-card"></BookCard>
   </div>
   <NormalButton id="load-more" textButton="Load more"></NormalButton>
 </div>
@@ -98,11 +98,10 @@ export default {
 }
 
 .book-list{
-  margin-top: 50px;
-  margin-bottom: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  margin: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 100px;
 }
 
 
