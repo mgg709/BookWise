@@ -44,6 +44,7 @@ export default {
 <style>
 .container-book-card{
     width:100%;
+    min-width: 184px;
     display: flex;
     flex-direction: column;
     align-items: center;

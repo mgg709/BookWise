@@ -1,12 +1,16 @@
 <template>
     <div class="content-bar">
-        <span class="logo" @click="redirectToIndex">logo</span>
-        <span class="selling-books-title" @click="redirectToSellings">Top selling books</span>
+        <RouterLink class="logo" to="/">logo</RouterLink>
+        <RouterLink class="selling-books-title" to="/selling">Top selling books</RouterLink>
         <RouterLink class="recommend-books-title" to="/recommendation">Recommend me a book</RouterLink>
         <input type="text" class="search-input" placeholder="Título...">     
         <div class="login-buttons">
-            <NormalButton textButton="Sign in" @click="redirectToLogIn"></NormalButton>
-            <NormalButton textButton="Sign up" @click="redirectToSignUp"></NormalButton>
+            <RouterLink to="/login">
+            <NormalButton textButton="Sign in"></NormalButton>
+            </RouterLink>
+            <RouterLink to="/signup">
+            <NormalButton textButton="Sign up"></NormalButton>
+            </RouterLink>
         </div>
        
     </div>
@@ -16,20 +20,10 @@
 import { RouterLink } from 'vue-router';
 import NormalButton from './NormalButton.vue';
 export default {
-  methods: {
-    redirectToLogIn() {
-      this.$router.push('/login');
+    name: "NavigationBar",
+    components: {
+        NormalButton,
     },
-    redirectToSellings(){
-        this.$router.push('/selling');
-    },
-    redirectToIndex(){
-        this.$router.push('/');
-    },
-    redirectToSignUp(){
-        this.$router.push('/signup');
-    }
-  }
 }
 </script>
 
@@ -41,6 +35,7 @@ export default {
     width: 100%;
     height: 10vh;
     padding: 0 2rem;
+    color: var(--color-text);
     
 }
 

@@ -1,8 +1,3 @@
-<script setup>
-import BookCard from '../components/BookCard.vue'
-import NormalButton from '../components/NormalButton.vue';
-</script>
-
 <template>
  <div class="container-home">
   <div id="parallelogram-left">
@@ -24,7 +19,18 @@ import NormalButton from '../components/NormalButton.vue';
 </div>
 
 </template>
+<script>
+import BookCard from '../components/BookCard.vue'
+import NormalButton from '../components/NormalButton.vue'
 
+export default {
+  name: "HomeView",
+  components: {
+    BookCard,
+    NormalButton
+  }
+}
+</script>
 <style>
 .container-home{
     overflow:hidden;
