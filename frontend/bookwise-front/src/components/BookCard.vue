@@ -1,7 +1,7 @@
 <template>
     <div class="container-book-card" :style="{width: widthSize}">
-        <img src="../assets/template-book-cover.jpeg" alt="Portada del libro" @click="redirectToBook">
-        <p>Interesting book title</p>
+        <img :src="book.imageLink" alt="Portada del libro" @click="redirectToBook">
+        <p>{{ book.title }}</p>
         <div class="rating-book-row">
             <button class="star">&#9734</button>
             <button class="star">&#9734</button>
@@ -15,9 +15,9 @@
 export default {
     name: "BookCard",
     props: {
-        bookStars: {
-            type: Number,
-            required: true
+        book: {
+            type: Object,
+            default: () => {}
         },
         widthSize: {
             type: String,
@@ -29,9 +29,9 @@ export default {
         this.$router.push('/book');
         },
         fillStars(){
+            let stars = this.book.stars.lowerBound.value;
             const starButtons = this.$el.querySelectorAll(".rating-book-row > button")
-            console.log(starButtons);
-            for(let i = 4; i >= 5-this.bookStars; i--){
+            for(let i = 4; i >= 5-stars; i--){
                 starButtons[i].innerHTML = "&#9733";
             }
         }

@@ -10,24 +10,45 @@
     </div>
   </div>
   <div class="book-list">
-    <BookCard imageName="template-book-cover" bookStars=2 widthSize="100%" class="book-card"></BookCard>
-    <BookCard imageName="template-book-cover" bookStars=4 widthSize="100%" class="book-card"></BookCard>
-    <BookCard imageName="template-book-cover" bookStars=2 widthSize="100%" class="book-card"></BookCard>
-    <BookCard imageName="template-book-cover" bookStars=4  widthSize="100%" class="book-card"></BookCard>
+    <span v-for="book in books">
+      <BookCard :book=book widthSize="100%" class="book-card"></BookCard>
+    </span>
+    
   </div>
-  <NormalButton id="load-more" textButton="Load more"></NormalButton>
+  <NormalButton id="load-more" textButton="Load more" @click="loadMore"></NormalButton>
 </div>
 
 </template>
 <script>
 import BookCard from '../components/BookCard.vue'
 import NormalButton from '../components/NormalButton.vue'
+import axios from 'axios'
 
 export default {
   name: "HomeView",
   components: {
     BookCard,
     NormalButton
+  },
+  data(){
+    return{
+      books:[],
+      counter:0
+    }
+  },
+  methods:{
+    async loadMore(){
+      const data = await axios.get(`http://localhost:8080/api/books/getTwentyBooks/${this.counter}`);
+      console.log(data);
+      data.data.content.forEach(element => {
+        this.books.push(element);
+      });
+      this.counter++;
+    }
+  },
+  mounted(){
+    this.loadMore()
+    console.log(this.books);
   }
 }
 </script>
