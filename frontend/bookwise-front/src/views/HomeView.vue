@@ -11,7 +11,7 @@
   </div>
   <div class="book-list">
     <span v-for="book in books">
-      <BookCard :book=book widthSize="100%" class="book-card"></BookCard>
+      <BookCard :book=book widthSize="100%"></BookCard>
     </span>
     
   </div>
