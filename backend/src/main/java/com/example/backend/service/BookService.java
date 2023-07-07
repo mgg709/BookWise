@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.Range;
@@ -14,8 +13,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.backend.model.Book;
 import com.example.backend.repositories.BookRepository;
-
-import co.elastic.clients.elasticsearch.ml.Page;
 
 @Service
 public class BookService {
@@ -87,7 +84,5 @@ public class BookService {
             PageRequest pageWithThirtyBooks = PageRequest.of(page, 20);
             return new PageImpl<>(bookRepository.findAll(pageWithThirtyBooks).toList(), pageWithThirtyBooks, bookRepository.count());
         }
-
-}
 
 }
