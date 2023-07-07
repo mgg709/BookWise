@@ -34,7 +34,6 @@ import Footer from '../components/Footer.vue'
       <BookCard imageName="template-book-cover"></BookCard>
     </div>
   </div>
-  <Footer></Footer>
 </template>
   
   <style>
