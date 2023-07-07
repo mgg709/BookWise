@@ -6,7 +6,7 @@ import Button from "../components/Button.vue"
         <span class="logo" @click="redirectToIndex">logo</span>
         <span class="selling-books-title" @click="redirectToSellings">Top selling books</span>
         <RouterLink class="recommend-books-title" to="/recommendation">Recommend me a book</RouterLink>
-        <input type="text" class="search-input" placeholder="Título...">     
+        <input type="text" class="search-input" id="input-search" v-on:keyup.enter="submit()" placeholder="Título...">     
         <div class="login-buttons">
             <Button textButton="Sign in" @click="redirectToLogIn"></Button>
             <Button textButton="Sign up" @click="redirectToSignUp"></Button>
@@ -17,7 +17,14 @@ import Button from "../components/Button.vue"
 
 <script>
 import { RouterLink } from 'vue-router';
+import axios from 'axios';
+
 export default {
+    data() {
+        return {
+            books:[]
+        }
+    },
   methods: {
     redirectToLogIn() {
       this.$router.push('/login');
@@ -30,6 +37,22 @@ export default {
     },
     redirectToSignUp(){
         this.$router.push('/signup');
+    },
+    async searchBooks(title) {
+        const {data} = await axios.get(`http://localhost:8080/api/books/${title}`);
+        console.log(data);
+        this.$store.commit('passBooks', data);
+        console.log(this.$store.state.searchBooks)
+    },
+    submit() {
+        var input = document.getElementById("input-search");
+        var texto = input.value;
+        this.searchBooks(texto);
+        this.redirectToBookList();
+    },
+    redirectToBookList(){
+        
+        this.$router.push('/result');
     }
   }
 }

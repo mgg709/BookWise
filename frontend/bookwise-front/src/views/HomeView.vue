@@ -1,70 +1,59 @@
-<script setup>
-import BookCard from '../components/BookCard.vue'
-import Footer from '../components/Footer.vue'
-import Button from "../components/Button.vue"
-</script>
-
 <template>
- <div class="container-home">
-  <div id="parallelogram-left">
-    <div class="text-banner-home">
-      <span>FIND YOUR FAVOURITES</span>
-      <span>BOOKS</span>
-    </div>
-    <div id="parallelogram-right">
-      <img src="../assets/banner-bg.jpeg" alt="">
-    </div>
-  </div>
-  <div class="book-list">
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-  </div>
-  <div class="book-list">
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-  </div>
-  <div class="book-list">
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-  </div>
-  <div class="book-list">
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-  </div>
-  <div class="book-list">
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-    <BookCard imageName="template-book-cover"></BookCard>
-  </div>
-  <Button id="load-more" textButton="Load more"></Button>
-</div>
-<Footer class="footer"></Footer>
-</template>
+  <div class="container-home">
+   <div id="parallelogram-left">
+     <div class="text-banner-home">
+       <span>FIND YOUR FAVOURITES</span>
+       <span>BOOKS</span>
+     </div>
+     <div id="parallelogram-right">
+       <img src="../assets/banner-bg.jpeg" alt="">
+     </div>
+   </div>
+   <div class="book-list">
+     <span v-for="book in books">
+       <BookCard :book=book widthSize="100%"></BookCard>
+     </span>
+   </div>
+   <NormalButton id="load-more" textButton="Load more" @click="loadMore"></NormalButton>
+   <Footer></Footer>
+ </div>
+ 
+ </template>
+ <script>
+ import BookCard from '../components/BookCard.vue'
+ import NormalButton from '../components/Button.vue'
+ import Footer from '../components/Footer.vue'
+ import axios from 'axios'
+ 
+ export default {
+   name: "HomeView",
+   components: {
+     BookCard,
+     NormalButton,
+     Footer
+   },
+   data(){
+     return{
+       books:[],
+       counter:0
+     }
+   },
+   methods:{
+     async loadMore(){
+       const data = await axios.get(`http://localhost:8080/api/books/getTwentyBooks/${this.counter}`);
+       console.log(data);
+       data.data.content.forEach(element => {
+         this.books.push(element);
+       });
+       this.counter++;
+     }
+   },
+   mounted(){
+     this.loadMore()
+     console.log(this.books);
+   }
+ }
+ </script>
 
 <style>
 .container-home{
@@ -73,10 +62,10 @@ import Button from "../components/Button.vue"
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width:100%;
 }
 #parallelogram-right {
-  display: flex;
+    display: flex;
     width: 100%;
     height: 50vh;
 
@@ -102,15 +91,16 @@ import Button from "../components/Button.vue"
 }
 
 #parallelogram-right img{
-  width: 55%;
+  width: 60%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 #parallelogram-left {
   display: flex;
   width: 100%;
-  height: 45vh;
+  height: 50vh;
   background: var(--color-black-light);
   overflow:hidden;
   position:relative;
@@ -132,11 +122,10 @@ import Button from "../components/Button.vue"
 }
 
 .book-list{
-  margin-top: 50px;
-  margin-bottom: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  margin: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 100px;
 }
 
 
@@ -149,7 +138,4 @@ import Button from "../components/Button.vue"
   margin-bottom: 15px;
 }
 
-.book-card{
-  width: 20%;
-}
 </style>

@@ -1,53 +1,49 @@
-<script setup>
-import Button from "../components/Button.vue"
-</script>
-
 <template>
-    <!--div class="container-book-card">
-        <img src="../assets/template-book-cover.jpeg" alt="Portada del libro">
-        <p>Interesting book title</p>
+    <div class="container-book-card" :style="{width: widthSize}">
+        <img :src="book.imageLink" alt="Portada del libro" @click="redirectToBook">
+        <p>{{ book.title }}</p>
         <div class="rating-book-row">
-            <input type="radio" name="star" id="star1"><label for="star1"></label>
-            <input type="radio" name="star" id="star2"><label for="star2"></label>
-            <input type="radio" name="star" id="star3"><label for="star3"></label>
-            <input type="radio" name="star" id="star4"><label for="star4"></label>
-            <input type="radio" name="star" id="star5"><label for="star5"></label>
-            <span></span>
+            <button class="star">&#9734</button>
+            <button class="star">&#9734</button>
+            <button class="star">&#9734</button>
+            <button class="star">&#9734</button>
+            <button class="star">&#9734</button>
         </div>
-    </div-->
-    <section class="container-book-card">
-        <img :src= "`src/assets/${imageName}.jpeg`" alt="Portada del libro">
-        <p>Interesting book title</p>
-        <section class="rating-book-row">
-            <input type="radio" name="star" id="star1"><label for="star1"></label>
-            <input type="radio" name="star" id="star2"><label for="star2"></label>
-            <input type="radio" name="star" id="star3"><label for="star3"></label>
-            <input type="radio" name="star" id="star4"><label for="star4"></label>
-            <input type="radio" name="star" id="star5"><label for="star5"></label>
-        </section>
-        <Button textButton="Read more" @click="redirectToBook"></Button>
-    </section>
+    </div>
 </template>
 <script>
 export default {
-  name: "BookCard",
-  methods: {
-    redirectToBook() {
-      this.$router.push('/book');
+    name: "BookCard",
+    props: {
+        book: {
+            type: Object,
+            default: () => {}
+        },
+        widthSize: {
+            type: String,
+            default: "100%"
+        },
+    },
+    methods: {
+        redirectToBook() {
+        this.$router.push('/book');
+        },
+        fillStars(){
+            let stars = this.book.stars.lowerBound.value;
+            const starButtons = this.$el.querySelectorAll(".rating-book-row > button")
+            for(let i = 4; i >= 5-stars; i--){
+                starButtons[i].innerHTML = "&#9733";
+            }
+        }
+    },
+    mounted(){
+        this.fillStars();
     }
-  },
-  props:{
-    imageName:{
-        type: String,
-        required: true
-    }
-  }
 }
 </script>
 <style>
 .container-book-card{
     width:100%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
