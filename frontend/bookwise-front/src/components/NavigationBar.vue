@@ -1,12 +1,7 @@
 <template>
     <div class="content-bar">
-<<<<<<< HEAD
-        <span class="logo" @click="redirectToIndex">logo</span>
-        <span class="selling-books-title" @click="redirectToSellings">Top selling books</span>
-=======
         <RouterLink class="logo" to="/">logo</RouterLink>
         <RouterLink class="selling-books-title" to="/selling">Top selling books</RouterLink>
->>>>>>> dev-matias
         <RouterLink class="recommend-books-title" to="/recommendation">Recommend me a book</RouterLink>
         <input type="text" class="search-input" id="input-search" v-on:keyup.enter="submit()" placeholder="Título...">     
         <div class="login-buttons">
@@ -25,11 +20,13 @@
 import { RouterLink } from 'vue-router';
 import axios from 'axios';
 
-<<<<<<< HEAD
-=======
+
 import NormalButton from './NormalButton.vue';
->>>>>>> dev-matias
 export default {
+    name: "NavigationBar",
+    components: {
+        NormalButton
+    },
     data() {
         return {
             books:[]
@@ -76,11 +73,7 @@ export default {
     width: 100%;
     height: 10vh;
     padding: 0 2rem;
-<<<<<<< HEAD
-=======
-    color: var(--color-text);
->>>>>>> dev-matias
-    
+    color: var(--color-text);   
 }
 
 .selling-books-title{

@@ -1,6 +1,6 @@
 <template>
     <div class="container-book-card" :style="{width: widthSize}">
-        <img :src="book.imageLink" alt="Portada del libro" @click="redirectToBook">
+        <img :src="book.imageLink" alt="Portada del libro" @click="redirectToBook(book.title)">
         <p>{{ book.title }}</p>
         <div class="rating-book-row">
             <button class="star">&#9734</button>
@@ -25,8 +25,8 @@ export default {
         },
     },
     methods: {
-        redirectToBook() {
-        this.$router.push('/book');
+        redirectToBook(title) {
+        this.$router.push('/book/'+title);
         },
         fillStars(){
             let stars = this.book.stars.lowerBound.value;
