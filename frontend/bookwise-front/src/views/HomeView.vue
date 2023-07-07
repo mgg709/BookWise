@@ -1,60 +1,57 @@
 <template>
-  <div class="container-home">
-   <div id="parallelogram-left">
-     <div class="text-banner-home">
-       <span>FIND YOUR FAVOURITES</span>
-       <span>BOOKS</span>
-     </div>
-     <div id="parallelogram-right">
-       <img src="../assets/banner-bg.jpeg" alt="">
-     </div>
-   </div>
-   <div class="book-list">
-     <span v-for="book in books">
-       <BookCard :book=book widthSize="100%"></BookCard>
-     </span>
-   </div>
-   <NormalButton id="load-more" textButton="Load more" @click="loadMore"></NormalButton>
-   <Footer></Footer>
- </div>
- 
- </template>
- <script>
- import BookCard from '../components/BookCard.vue'
- import NormalButton from '../components/Button.vue'
- import Footer from '../components/Footer.vue'
- import axios from 'axios'
- 
- export default {
-   name: "HomeView",
-   components: {
-     BookCard,
-     NormalButton,
-     Footer
-   },
-   data(){
-     return{
-       books:[],
-       counter:0
-     }
-   },
-   methods:{
-     async loadMore(){
-       const data = await axios.get(`http://localhost:8080/api/books/getTwentyBooks/${this.counter}`);
-       console.log(data);
-       data.data.content.forEach(element => {
-         this.books.push(element);
-       });
-       this.counter++;
-     }
-   },
-   mounted(){
-     this.loadMore()
-     console.log(this.books);
-   }
- }
- </script>
+ <div class="container-home">
+  <div id="parallelogram-left">
+    <div class="text-banner-home">
+      <span>FIND YOUR FAVOURITES</span>
+      <span>BOOKS</span>
+    </div>
+    <div id="parallelogram-right">
+      <img src="../assets/banner-bg.jpeg" alt="">
+    </div>
+  </div>
+  <div class="book-list">
+    <span v-for="book in books">
+      <BookCard :book=book widthSize="100%"></BookCard>
+    </span>
+    
+  </div>
+  <NormalButton id="load-more" textButton="Load more" @click="loadMore"></NormalButton>
+</div>
 
+</template>
+<script>
+import BookCard from '../components/BookCard.vue'
+import NormalButton from '../components/NormalButton.vue'
+import axios from 'axios'
+
+export default {
+  name: "HomeView",
+  components: {
+    BookCard,
+    NormalButton
+  },
+  data(){
+    return{
+      books:[],
+      counter:0
+    }
+  },
+  methods:{
+    async loadMore(){
+      const data = await axios.get(`http://localhost:8080/api/books/getTwentyBooks/${this.counter}`);
+      console.log(data);
+      data.data.content.forEach(element => {
+        this.books.push(element);
+      });
+      this.counter++;
+    }
+  },
+  mounted(){
+    this.loadMore()
+    console.log(this.books);
+  }
+}
+</script>
 <style>
 .container-home{
     overflow:hidden;
@@ -122,6 +119,10 @@
 }
 
 .book-list{
+  margin: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 100px;
   margin: 50px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);

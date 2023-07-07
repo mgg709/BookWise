@@ -1,7 +1,3 @@
-<script setup>
-import Button from "../components/Button.vue"
-</script>
-
 <template>
     <div class="form-body">
         <p>Welcome</p>
@@ -12,7 +8,16 @@ import Button from "../components/Button.vue"
         </form>
     </div>
 </template>
+<script>
+import NormalButton from "../components/NormalButton.vue"
 
+export default {
+    name: "LoginView",
+    components: {
+        NormalButton,
+    }
+}
+</script>
 <style>
 *{
     padding: 0;
