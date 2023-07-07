@@ -9,6 +9,11 @@ import com.example.backend.model.Book;
 
 
 public interface BookRepository extends ElasticsearchRepository<Book, Integer>{
-    List<Book> findByTitle(String title);
     public List<Book> findAll();
+
+    List<Book> findByTitle(String title);
+
+    public List<Book> findByCategory(String Category);
+
+    //public List<Book> findByLessPages(int pages);
 }
