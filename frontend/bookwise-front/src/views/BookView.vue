@@ -10,7 +10,13 @@
             </div>
             <span>{{ book[0].author }}</span>
             <span>{{ book[0].category }}</span>
-            <span>{{ book[0].stars.lowerBound.value }}</span>
+            <div class="bv-rating-book-row">
+            <button class="bv-star">&#9734</button>
+            <button class="bv-star">&#9734</button>
+            <button class="bv-star">&#9734</button>
+            <button class="bv-star">&#9734</button>
+            <button class="bv-star">&#9734</button>
+        </div>
             <span>{{ book[0].description }}</span>
           </div>
         </div>
@@ -21,8 +27,9 @@
       </div>
       <aside class="related-books">
         <span>Related books</span>
-        <img src="../assets/template-book-cover.jpeg" alt="">
-        <img src="../assets/template-book-cover.jpeg" alt="">
+        <img v-if="book[0].title != books[0].title" :src=this.books[0].imageLink alt="">
+        <img v-if="book[0].title != books[1].title" :src=this.books[1].imageLink alt="">
+        <img v-if="book[0].title != books[2].title" :src=this.books[2].imageLink alt="">
       </aside>
     </div>
 </template>
@@ -33,6 +40,7 @@ import { useRoute } from 'vue-router'
 import axios from 'axios'
 
 export default{
+  name: 'BookView',
   components:{
     ReviewCard,
     NormalButton
@@ -40,20 +48,40 @@ export default{
   data(){
     return{
       book: Object,
+      books:[]
     }
   },
   methods: {
-    async getBook(){
+    async getBookByTitle(){
       const route = useRoute();
       const {data} = await axios.get(`http://localhost:8080/api/books/${route.params.title}`);
       this.book = data;
-      console.log(this.book);
-    }
+      console.log(this.book);      
+    },
+    fillStars(){
+            let stars = this.book[0].stars.lowerBound.value;
+            const starButtons = this.$el.querySelectorAll(".bv-rating-book-row > button")
+            for(let i = 4; i >= 5-stars; i--){
+                starButtons[i].innerHTML = "&#9733";
+            }
+        },
+    async getBookByCategory(){
+      const route = useRoute();
+      const {data} = await axios.get(`http://localhost:8080/api/books/category/${route.params.title}`);
+      this.books = data;
+      this.books.sort(() => Math.random() - 0.5);
+      console.log(this.books);
+    }  
+  },
+  created(){
+    this.getBookByTitle();
+  },
+  beforeMount(){
+    this.getBookByCategory();
   },
   mounted(){
-    this.getBook()
+    this.fillStars();
   }
-  
 }
 </script>
 <style>
@@ -65,6 +93,7 @@ export default{
   margin-top: 20px;
   align-items: center;
   margin-bottom: 20px;
+  height: 100%;
 }
 
 .book-details{
@@ -77,6 +106,7 @@ export default{
 
 .book-cover{
   display: flex;
+  margin-left: 40px;
 }
 
 .book-cover img{
@@ -137,5 +167,24 @@ export default{
   margin: 10px 0px;
 }
 
+.bv-rating-book-row{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    transform: rotateY(180deg);
+}
+
+.bv-star{
+    font-size: 1.5rem;
+    color: #ff9800;
+    background-color: unset;
+    border: none;
+}
+
+.related-books img{
+  width: 40%;
+  margin: 10px 0px;
+}
 </style>
   

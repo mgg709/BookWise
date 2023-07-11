@@ -1,7 +1,5 @@
 <template>
     <button class="btn">{{ textButton }} </button>
-        <!-- <span class="tooltip">{{ textButton }}</span> -->
-    
 </template>
 
 <script>

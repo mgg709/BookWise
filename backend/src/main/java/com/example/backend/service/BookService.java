@@ -33,6 +33,10 @@ public class BookService {
         return bookRepository.findByTitle(title);
     }
 
+    public List<Book> findByCategory(final String category){
+        return bookRepository.findByCategory(category);
+    }
+
     public List<Book> createAndGetBooks() throws IOException {
             BufferedReader br = null;
             List<Book> books = new ArrayList<Book>();
