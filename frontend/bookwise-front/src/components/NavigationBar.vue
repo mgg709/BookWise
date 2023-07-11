@@ -20,7 +20,6 @@
 import { RouterLink } from 'vue-router';
 import axios from 'axios';
 
-
 import NormalButton from './NormalButton.vue';
 export default {
     name: "NavigationBar",
@@ -58,7 +57,6 @@ export default {
         this.redirectToBookList();
     },
     redirectToBookList(){
-        
         this.$router.push('/result');
     }
   }
@@ -73,7 +71,7 @@ export default {
     width: 100%;
     height: 10vh;
     padding: 0 2rem;
-    color: var(--color-text);   
+    color: var(--color-text);
 }
 
 .selling-books-title{
