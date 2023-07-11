@@ -19,9 +19,13 @@
 <script>
 import { RouterLink } from 'vue-router';
 import axios from 'axios';
-
 import NormalButton from './NormalButton.vue';
+
 export default {
+    name: "NavigationBar",
+    components: {
+        NormalButton
+    },
     data() {
         return {
             books:[]
@@ -53,7 +57,6 @@ export default {
         this.redirectToBookList();
     },
     redirectToBookList(){
-        
         this.$router.push('/result');
     }
   }
