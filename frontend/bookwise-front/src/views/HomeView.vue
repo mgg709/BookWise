@@ -38,8 +38,7 @@ export default {
   },
   methods:{
     async loadMore(){
-      const data = await axios.get(`http://localhost:8080/api/books/getTwentyBooks/${this.counter}`);
-      console.log(data);
+      const data = await axios.get(`http://localhost:8080/api/books/getTwentyBooks/${this.counter}`)
       data.data.content.forEach(element => {
         this.books.push(element);
       });
@@ -48,7 +47,6 @@ export default {
   },
   mounted(){
     this.loadMore()
-    console.log(this.books);
   }
 }
 </script>

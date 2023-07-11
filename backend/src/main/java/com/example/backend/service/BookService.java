@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import com.example.backend.model.Book;
 import com.example.backend.repositories.BookRepository;
 
+import co.elastic.clients.elasticsearch.ml.Page;
+
 @Service
 public class BookService {
 
@@ -29,6 +31,10 @@ public class BookService {
 
     public List<Book> findByTitle(final String title){
         return bookRepository.findByTitle(title);
+    }
+
+    public List<Book> findByCategory(final String category){
+        return bookRepository.findByCategory(category);
     }
 
     public List<Book> createAndGetBooks() throws IOException {
@@ -52,11 +58,9 @@ public class BookService {
                         }
                         Book book = new Book(Integer.parseInt(libro[0]),libro[1],libro[2],Double.parseDouble(libro[3]),Integer.parseInt(libro[7]),libro[8],libro[8+aux+1], Range.just(Integer.parseInt(libro[8+aux+2])),Integer.parseInt(libro[8+aux+3]),libro[8+aux+4],libro[8+aux+5],Integer.parseInt(libro[8+aux+6]),Integer.parseInt(libro[8+aux+7]));
                         books.add(book);
-                        System.out.println(book.toString());
                     }else{
                         Book book = new Book(Integer.parseInt(libro[0]),libro[1],libro[2],Double.parseDouble(libro[3]),Integer.parseInt(libro[7]),libro[8],libro[9],Range.just(Integer.parseInt(libro[10])),Integer.parseInt(libro[11]),libro[12],libro[13],Integer.parseInt(libro[14]),Integer.parseInt(libro[15]));
                         books.add(book);
-                        System.out.println(book.toString());
                     }
                     // index++;
                     line = br.readLine();
@@ -84,5 +88,7 @@ public class BookService {
             PageRequest pageWithThirtyBooks = PageRequest.of(page, 20);
             return new PageImpl<>(bookRepository.findAll(pageWithThirtyBooks).toList(), pageWithThirtyBooks, bookRepository.count());
         }
+
+}
 
 }

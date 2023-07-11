@@ -19,8 +19,8 @@
 <script>
 import { RouterLink } from 'vue-router';
 import axios from 'axios';
-import NormalButton from './NormalButton.vue';
 
+import NormalButton from './NormalButton.vue';
 export default {
     name: "NavigationBar",
     components: {
