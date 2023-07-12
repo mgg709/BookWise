@@ -16,30 +16,41 @@ import org.springframework.data.elasticsearch.core.Range;
 public class Book {
     
     @Id
-    Integer id;
+    private Integer id;
+
     @Field(type = FieldType.Text, name = "title")
-    String title;
+    private String title;
+
     @Field(type = FieldType.Text, name = "category")
-    String category;
+    private String category;
+
     @Field(type = FieldType.Double, name = "price")
-    Double price;
+    private Double price;
+
     @Field(type = FieldType.Integer, name = "numberOfReviews")
-    Integer numberOfReviews;
+    private Integer numberOfReviews;
+
     @Field(type = FieldType.Text, name = "description")
-    String description;
+    private String description;
+
     @Field(type = FieldType.Text, name = "imageLink")
-    String imageLink;
+    private String imageLink;
+
     @Field(type = FieldType.Integer_Range, name = "stars")
-    Range<Integer> stars = Range.closed(0,5);
+    private Range<Integer> stars = Range.closed(0,5);
+
     @Field(type = FieldType.Integer, name = " numberOfPages")
-    Integer numberOfPages;
+    private Integer numberOfPages;
+
     @Field(type = FieldType.Text, name = "language")
-    String language;
+    private String language;
+
     @Field(type = FieldType.Text, name = "binding")
-    String binding;
+    private String binding;
+
     @Field(type = FieldType.Integer, name = "weight")
-    Integer weight;
+    private Integer weight;
+
     @Field(type = FieldType.Integer, name = "yearOfEdition")
-    Integer yearOfEdition;
-    
+    private Integer yearOfEdition;
 }

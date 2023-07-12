@@ -1,10 +1,11 @@
 package com.example.backend.controller;
 
+import com.example.backend.model.Book;
 import com.example.backend.service.BookService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -12,6 +13,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class SearchController {
 
-    @Autowired
     private final BookService bookService;
+
+
+    @GetMapping("{word}")
+    public List<Book> searchByString(@PathVariable final String word) {
+
+        return this.bookService.findByString(word);
+    }
+
+
+    //This is just a placeholder while learning more Elastic
+    //TODO: Define an algorithm for this
+    @GetMapping("/advanced")
+    public List<Book> advancedSearch(
+            @RequestParam(name = "tittle", defaultValue = "", required = false)
+            final String tittle,
+            @RequestParam(name = "category", defaultValue = "", required = false)
+            final String category) {
+
+        return this.bookService.findByTitle(tittle);
+    }
+
+
+
 }

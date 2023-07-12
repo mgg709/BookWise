@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.Range;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,7 @@ import com.example.backend.repositories.BookRepository;
 @RequiredArgsConstructor
 public class BookService {
 
-    @Autowired
+
     private final BookRepository bookRepository;
 
 
@@ -28,7 +27,6 @@ public class BookService {
     public void save(final Book book){
         bookRepository.save(book);
     }
-
 
 
     /**
@@ -76,24 +74,32 @@ public class BookService {
     }
 
 
-
-
-
-
-
     public void indexBooks() throws IOException{
         List<Book> books = this.createAndGetBooks();
         bookRepository.saveAll(books);
     }
 
 
-
     public List<Book> findByTitle(final String title){
+
         return bookRepository.findByTitle(title);
     }
 
+
     public List<Book> findAll(){
+
         return bookRepository.findAll();
+    }
+
+
+    /**
+     * Returns the List of books that  (flexibly) match a certain string by tittle, category or description.
+     * @param string
+     * @return
+     */
+    public List<Book> findByString(final String string){
+
+        return bookRepository.findByString(string);
     }
 
 }
