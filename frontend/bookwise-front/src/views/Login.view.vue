@@ -1,15 +1,15 @@
 <template>
     <div class="container">
     <div class="content">
-        <h1>Sign-Up to BookWise</h1>
+        <h1>Log in to BookWise</h1>
         <div class="action-buttons">
             <button class="primary-button sign-in-button">
                 <object data="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"></object>
-                <span>Use google</span>
+                <span>Sign in with google</span>
             </button>
             <button class="primary-button sign-in-button">
                 <object data="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg"></object>
-                <span>Use Facebook</span>
+                <span>Sign in with Facebook</span>
             </button>
         </div>
 
@@ -19,12 +19,7 @@
 
         <div class="email-log-in">
             <input type="text" id="log-in" placeholder="Email">
-            <label for="log-in">Email</label>
-        </div>
-
-        <div class="username-log-in">
-            <input type="text" id="user-log-in" placeholder="Username">
-            <label for="user-log-in">Username</label>
+            <label for="log-in">Email or username</label>
         </div>
 
         <div class="password-log-in">
@@ -32,17 +27,13 @@
             <label for="pass-log-in">Password</label>
         </div>
 
-        <div class="repeat-password-log-in">
-            <input type="password" id="rep-pass-log-in" placeholder="Repeat Password">
-            <label for="rep-pass-log-in">Repeat Password</label>
-        </div>
-
         <div class="action-buttons">
-            <button class="primary-button">Sign-Up</button>
+            <button class="primary-button">Next</button>
+            <button class="secondary-button">Forgot password?</button>
         </div>
     </div>
     <div class="sign-up">
-        <p>Already have an account? <a href="login">Sign in</a></p>
+        <p>Don't have an account? <a href="signup">Sign up</a></p>
     </div>
     </div>
 </template>
@@ -200,17 +191,13 @@ input:focus + label{
 }
 
 .email-log-in,
-.username-log-in,
-.password-log-in,
-.repeat-password-log-in{
+.password-log-in{
     width: 100%;
     position: relative;
 }
 
 .email-log-in input,
-.username-log-in input,
-.password-log-in input,
-.repeat-password-log-in input{
+.password-log-in input{
     width: 100%;
     border-radius: 0.375rem;
     background-color: transparent;
