@@ -14,8 +14,6 @@ import org.springframework.stereotype.Service;
 import com.example.backend.model.Book;
 import com.example.backend.repositories.BookRepository;
 
-import co.elastic.clients.elasticsearch.ml.Page;
-
 @Service
 public class BookService {
 
@@ -42,7 +40,7 @@ public class BookService {
             List<Book> books = new ArrayList<Book>();
 
             try {
-                br = new BufferedReader(new FileReader("src/main/java/com/example/backend/dataset.csv"));
+                br = new BufferedReader(new FileReader("src/main/java/com/example/backend/dataset02.csv"));
                 //Nos saltamos la primera línea para que no lea las labels del dataset
                 String line = br.readLine();
                 //Primer libro
@@ -88,7 +86,5 @@ public class BookService {
             PageRequest pageWithThirtyBooks = PageRequest.of(page, 20);
             return new PageImpl<>(bookRepository.findAll(pageWithThirtyBooks).toList(), pageWithThirtyBooks, bookRepository.count());
         }
-
-}
 
 }
