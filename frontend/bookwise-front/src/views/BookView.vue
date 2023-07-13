@@ -1,20 +1,23 @@
-<script setup>
-import ReviewCard from '../components/ReviewCard.vue'
-</script>
 <template>
     <div class="book-view-content">
       <div class="book-details">
         <div class="book-cover">
-          <img src="../assets/template-book-cover.jpeg" alt="">
+          <img :src=book[0].imageLink alt="">
           <div class="book-data">
             <div class="book-titulo">
-              <span>título</span>
-              <button>Añadir a Favoritos</button>
+              <span>{{ book[0].title }}</span>
+              <NormalButton textButton="Añadir a favoritos"></NormalButton>
             </div>
-            <span>Autor</span>
-            <span>Categoría</span>
-            <span>Rating</span>
-            <span>description</span>
+            <span>{{ book[0].author }}</span>
+            <span>{{ book[0].category }}</span>
+            <div class="bv-rating-book-row">
+            <button class="bv-star">&#9734</button>
+            <button class="bv-star">&#9734</button>
+            <button class="bv-star">&#9734</button>
+            <button class="bv-star">&#9734</button>
+            <button class="bv-star">&#9734</button>
+        </div>
+            <span>{{ book[0].description }}</span>
           </div>
         </div>
         <div class="book-reviews">
@@ -24,20 +27,73 @@ import ReviewCard from '../components/ReviewCard.vue'
       </div>
       <aside class="related-books">
         <span>Related books</span>
-        <img src="../assets/template-book-cover.jpeg" alt="">
-        <img src="../assets/template-book-cover.jpeg" alt="">
+        <img v-if="book[0].title != books[0].title" :src=this.books[0].imageLink alt="">
+        <img v-if="book[0].title != books[1].title" :src=this.books[1].imageLink alt="">
+        <img v-if="book[0].title != books[2].title" :src=this.books[2].imageLink alt="">
       </aside>
     </div>
 </template>
+<script>
+import ReviewCard from '../components/ReviewCard.vue'
+import NormalButton from '../components/NormalButton.vue'
+import { useRoute } from 'vue-router'
+import axios from 'axios'
+
+export default{
+  name: 'BookView',
+  components:{
+    ReviewCard,
+    NormalButton
+  },
+  data(){
+    return{
+      book: Object,
+      books:[]
+    }
+  },
+  methods: {
+    async getBookByTitle(){
+      const route = useRoute();
+      const {data} = await axios.get(`http://localhost:8080/api/books/${route.params.title}`);
+      this.book = data;
+      console.log(this.book);      
+    },
+    fillStars(){
+            let stars = this.book[0].stars.lowerBound.value;
+            const starButtons = this.$el.querySelectorAll(".bv-rating-book-row > button")
+            for(let i = 4; i >= 5-stars; i--){
+                starButtons[i].innerHTML = "&#9733";
+            }
+        },
+    async getBookByCategory(){
+      const route = useRoute();
+      const {data} = await axios.get(`http://localhost:8080/api/books/category/${route.params.title}`);
+      this.books = data;
+      this.books.sort(() => Math.random() - 0.5);
+      console.log(this.books);
+    }  
+  },
+  created(){
+    this.getBookByTitle();
+  },
+  beforeMount(){
+    this.getBookByCategory();
+  },
+  mounted(){
+    this.fillStars();
+  }
+}
+</script>
 <style>
 
 .book-view-content{
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: row;
   margin-top: 20px;
   align-items: center;
   margin-bottom: 20px;
+  height: 100%;
 }
 
 .book-details{
@@ -50,6 +106,7 @@ import ReviewCard from '../components/ReviewCard.vue'
 
 .book-cover{
   display: flex;
+  margin-left: 40px;
 }
 
 .book-cover img{
@@ -64,7 +121,7 @@ import ReviewCard from '../components/ReviewCard.vue'
 
 .book-titulo{
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   & span{
@@ -79,7 +136,7 @@ import ReviewCard from '../components/ReviewCard.vue'
 
 .book-data span:nth-child(3){
   background-color: #d9d9d9;
-  width: 50%;
+  width: 15%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -110,5 +167,24 @@ import ReviewCard from '../components/ReviewCard.vue'
   margin: 10px 0px;
 }
 
+.bv-rating-book-row{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    transform: rotateY(180deg);
+}
+
+.bv-star{
+    font-size: 1.5rem;
+    color: #ff9800;
+    background-color: unset;
+    border: none;
+}
+
+.related-books img{
+  width: 40%;
+  margin: 10px 0px;
+}
 </style>
   

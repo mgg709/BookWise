@@ -36,6 +36,10 @@ public class BookService {
         return bookRepository.findByTitle(title);
     }
 
+    public List<Book> findByCategory(final String category){
+        return bookRepository.findByCategory(category);
+    }
+
     /**
      * Read the csv to create the books.
      * @return List of books

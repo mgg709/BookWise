@@ -8,7 +8,7 @@ import Footer from './components/Footer.vue'
   
   <section class="content">
     <NavigationBar class="navbar"></NavigationBar>
-    <RouterView></RouterView>
+    <RouterView class="main"></RouterView>
     <Footer class="footer"></Footer>
   </section>
   
@@ -18,10 +18,14 @@ import Footer from './components/Footer.vue'
 .content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+}
+
+.main{
+  min-height: calc(100vh - 97px - 146px);
 }
 
 .navbar{
@@ -30,6 +34,8 @@ import Footer from './components/Footer.vue'
 .footer{
   width: 100%;
   text-align: center;
+  bottom: 0;
+  position: relative;
 }
 
 </style>

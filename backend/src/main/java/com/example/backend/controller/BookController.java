@@ -68,5 +68,10 @@ public class BookController {
         }
     }
 
+    @GetMapping("/category/{title}")
+    public List<Book> findByCategory(@PathVariable final String title){
+        List<Book> books = this.findByTitle(title);
+        return bookService.findByCategory(books.get(0).getCategory());
+    }
 
 }
