@@ -29,12 +29,11 @@ public class BookController {
     }
 
 
-    /*
+    
     @GetMapping("{title}")
     public List<Book> findByTitle(@PathVariable final String title){
         return bookService.findByTitle(title);
     }
-    */
 
 
 
