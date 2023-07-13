@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import com.example.backend.model.Book;
 import com.example.backend.repositories.BookRepository;
 
-import co.elastic.clients.elasticsearch.ml.Page;
 
 @Service
 public class BookService {
@@ -88,7 +87,5 @@ public class BookService {
             PageRequest pageWithThirtyBooks = PageRequest.of(page, 20);
             return new PageImpl<>(bookRepository.findAll(pageWithThirtyBooks).toList(), pageWithThirtyBooks, bookRepository.count());
         }
-
-}
 
 }
