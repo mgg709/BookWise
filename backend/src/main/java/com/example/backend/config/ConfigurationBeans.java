@@ -14,7 +14,7 @@ public class ConfigurationBeans extends ElasticsearchConfiguration{
     @Override
     public ClientConfiguration clientConfiguration() {
         return ClientConfiguration.builder()
-                .connectedToLocalhost()
+                .connectedTo("localhost:9200")
                 .build();
     }
 }

@@ -1,11 +1,7 @@
-FROM openjdk:17
-
+FROM maven:3.8.4-openjdk-17-slim
+COPY . /app
 WORKDIR /app
-
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:go-offline
-
-COPY src ./src
-EXPOSE 8080
-CMD ["./mvnw", "spring-boot:run"]
+RUN mvn clean package \
+    && mv target/backend-0.0.1-SNAPSHOT.jar /app.jar \
+    && rm -rf /app/target
+ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app.jar"]
