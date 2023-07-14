@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.data.domain.PageImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +32,7 @@ public class BookController {
 
 
     
-    @GetMapping("{title}")
+    @GetMapping("/getTitle/{title}")
     public List<Book> findByTitle(@PathVariable final String title){
         return bookService.findByTitle(title);
     }
@@ -71,6 +73,11 @@ public class BookController {
     public List<Book> findByCategory(@PathVariable final String title){
         List<Book> books = this.findByTitle(title);
         return bookService.findByCategory(books.get(0).getCategory());
+    }
+
+    @GetMapping("getTwentyBooks/{page}")
+    public PageImpl<Book> getTwentyBooks(@PathVariable final int page){
+        return bookService.getTwentyBooks(page);
     }
 
 }

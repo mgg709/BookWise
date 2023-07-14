@@ -51,7 +51,7 @@
             <input type="text" v-model="title">
     </div>
     <div class="question">
-        <span>How many hours a day are you going to read?</span>
+        <span>How many days a week are you going to read?</span>
         <div class="question-inputs-3">
             <div class="column">
                 <input type="radio" id="one" value=1 v-model="picked">

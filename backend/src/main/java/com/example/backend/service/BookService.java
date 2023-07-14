@@ -93,8 +93,8 @@ public class BookService {
         }
 
         public PageImpl<Book> getTwentyBooks(int page){
-            PageRequest pageWithThirtyBooks = PageRequest.of(page, 20);
-            return new PageImpl<>(bookRepository.findAll(pageWithThirtyBooks).toList(), pageWithThirtyBooks, bookRepository.count());
+            PageRequest pageWithTwentyBooks = PageRequest.of(page, 20);
+            return new PageImpl<>(bookRepository.findAll(pageWithTwentyBooks).toList(), pageWithTwentyBooks, bookRepository.count());
         }
 
 
@@ -107,3 +107,5 @@ public class BookService {
 
         return bookRepository.findByString(string);
     }
+
+}
