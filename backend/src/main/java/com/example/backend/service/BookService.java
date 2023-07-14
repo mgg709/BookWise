@@ -55,16 +55,16 @@ public class BookService {
                             libro[8] += libro[8+aux];
                         }
                         List<String> array = new ArrayList<String>();
-                        array.add(libro[8+aux+8]);
-                        array.add(libro[8+aux+9]);
-                        array.add(libro[8+aux+10]);
+                        array.add(libro[8+aux+8].toString());
+                        array.add(libro[8+aux+9].toString());
+                        array.add(libro[8+aux+10].toString());
                         Book book = new Book(Integer.parseInt(libro[0]),libro[1],libro[2],Double.parseDouble(libro[3]),Integer.parseInt(libro[7]),libro[8],libro[8+aux+1], Range.just(Integer.parseInt(libro[8+aux+2])),Integer.parseInt(libro[8+aux+3]),libro[8+aux+4],libro[8+aux+5],Integer.parseInt(libro[8+aux+6]),Integer.parseInt(libro[8+aux+7]), array);
                         books.add(book);
                     }else{
                         List<String> array = new ArrayList<String>();
-                        array.add(libro[16]);
-                        array.add(libro[17]);
-                        array.add(libro[18]);
+                        array.add(libro[16].toString());
+                        array.add(libro[17].toString());
+                        array.add(libro[18].toString());
                         Book book = new Book(Integer.parseInt(libro[0]),libro[1],libro[2],Double.parseDouble(libro[3]),Integer.parseInt(libro[7]),libro[8],libro[9],Range.just(Integer.parseInt(libro[10])),Integer.parseInt(libro[11]),libro[12],libro[13],Integer.parseInt(libro[14]),Integer.parseInt(libro[15]), array);
                         books.add(book);
                     }
