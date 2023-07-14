@@ -6,22 +6,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.elasticsearch.core.Range;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.model.Book;
 import com.example.backend.repositories.BookRepository;
 
+import co.elastic.clients.elasticsearch.ml.Page;
+
 @Service
+@RequiredArgsConstructor
 public class BookService {
 
     private final BookRepository bookRepository;
 
-    public BookService(BookRepository bookRepository){
-        this.bookRepository = bookRepository;
-    }
+
+
+
 
     public void save(final Book book){
         bookRepository.save(book);
@@ -35,6 +40,11 @@ public class BookService {
         return bookRepository.findByCategory(category);
     }
 
+    /**
+     * Read the csv to create the books.
+     * @return List of books
+     * @throws IOException Fail while reading dataset file.
+     */
     public List<Book> createAndGetBooks() throws IOException {
             BufferedReader br = null;
             List<Book> books = new ArrayList<Book>();
@@ -94,5 +104,16 @@ public class BookService {
             PageRequest pageWithThirtyBooks = PageRequest.of(page, 20);
             return new PageImpl<>(bookRepository.findAll(pageWithThirtyBooks).toList(), pageWithThirtyBooks, bookRepository.count());
         }
+
+
+    /**
+     * Returns the List of books that  (flexibly) match a certain string by tittle, category or description.
+     * @param string
+     * @return
+     */
+    public List<Book> findByString(final String string){
+
+        return bookRepository.findByString(string);
+    }
 
 }
