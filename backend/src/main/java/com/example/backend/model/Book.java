@@ -1,5 +1,7 @@
 package com.example.backend.model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -42,5 +44,7 @@ public class Book {
     Integer weight;
     @Field(type = FieldType.Integer, name = "yearOfEdition")
     Integer yearOfEdition;
+    @Field(type = FieldType.Nested, name = "adjectives")
+    List<String> adjectives;
     
 }
