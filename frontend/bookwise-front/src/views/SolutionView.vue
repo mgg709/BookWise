@@ -1,27 +1,30 @@
 <template>
     <div class="solution-content">
         <span>Our recommendation is...</span>
-        <div class="solution-books">
+        <div class="solution-books" v-for="book in booksRecommended">
             <div class="s-book">
-                <img src="../assets/template-book-cover.jpeg" alt="">
-                <span>TITLE</span>
-                <button>Add to favourites</button>
-            </div>
-            <div class="s-book">
-                <img src="../assets/template-book-cover.jpeg" alt="">
-                <span>TITLE</span>
-                <button>Add to favourites</button>
-            </div>
-            <div class="s-book">
-                <img src="../assets/template-book-cover.jpeg" alt="">
-                <span>TITLE</span>
-                <button>Add to favourites</button>
+                <img :src="book.imageLink" alt="">
+                <span>{{ book.title }}</span>
+                <NormalButton textButton="Add to favourites"></NormalButton>
             </div>
         </div>
     </div>
     
 </template>
-<script></script>
+<script>
+import { mapState } from 'vuex';
+import NormalButton from '../components/NormalButton.vue'
+export default {
+    components: {
+    NormalButton
+    },
+    computed: mapState({
+            booksRecommended() {
+                return this.$store.state.recommendations;
+            }
+        })
+}
+</script>
 <style>
 .solution-content{
     width: 100%;

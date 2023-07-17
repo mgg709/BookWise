@@ -18,45 +18,52 @@ public class RecommendationService {
     
     public List<Book> getRecommendations(String title, String[] categories, Integer days) {
         List<Book> books = new ArrayList<Book>();
+        List<Book> booksToRemove = new ArrayList<Book>();
         List<Book> recommendations = new ArrayList<Book>();
         List<Book> booksSameCategory = new ArrayList<Book>();
         for (String category : categories) {
+            System.out.println(category);
             books.addAll(bookRepository.findByCategory(category));
         }
         if(days == 1){
             for (Book b : books){
                 if(b.getNumberOfPages() > 100)
-                    books.remove(b);
+                    booksToRemove.add(b);
             }
         } else if(days==2){
             for (Book b : books){
-                if(b.getNumberOfPages() <=100 &&  b.getNumberOfPages() > 200)
-                    books.remove(b);
+                if(b.getNumberOfPages() <=100 ||  b.getNumberOfPages() > 200)
+                    booksToRemove.add(b);
             }
         } else if(days==3){
             for (Book b : books){
                 if(b.getNumberOfPages() <=200 &&  b.getNumberOfPages() > 300)
-                    books.remove(b);
+                    booksToRemove.add(b);
             }
         }else{
             for (Book b : books){
                 if(b.getNumberOfPages() <=300)
-                    books.remove(b);
+                    booksToRemove.add(b);
             }
         }
+        books.removeAll(booksToRemove);
         List<Book> book = bookRepository.findByTitle(title);
         for (Book b : books) {
             if (b.getCategory().equals(book.get(0).getCategory())) {
                 booksSameCategory.add(b);
-                books.remove(b);
             }
         }
 
         booksSameCategory.sort((b1,b2) -> b2.getStars().getLowerBound().getValue().get().compareTo(b1.getStars().getLowerBound().getValue().get()));
         books.sort((b1,b2) -> b2.getStars().getLowerBound().getValue().get().compareTo(b1.getStars().getLowerBound().getValue().get()));
-        recommendations.add(0, booksSameCategory.get(0));
-        recommendations.add(1, booksSameCategory.get(1));
-        recommendations.add(2, books.get(2));
+        for(int i = 0; i<2 && i<booksSameCategory.size();i++){
+            recommendations.add(i, booksSameCategory.get(i));
+        }
+        if(!books.isEmpty()){
+            if(books.get(0) != recommendations.get(0) && books.get(0) != recommendations.get(1)){
+                recommendations.add(2, books.get(0));
+            }
+        }
         return recommendations;
     }
 }

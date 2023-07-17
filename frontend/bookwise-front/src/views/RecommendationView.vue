@@ -48,7 +48,7 @@
     </div>
     <div class="question">
             <span>What was the last book you enjoyed?</span>
-            <input type="text" v-model="title">
+            <input type="text" v-model="title" placeholder="Title here">
     </div>
     <div class="question">
         <span>How many days a week are you going to read?</span>
@@ -71,12 +71,13 @@
             </div> 
         </div>
     </div>
-    <RouterLink to="/solution"><NormalButton textButton="Recommend"></NormalButton></RouterLink>
+    <RouterLink to="/solution"><NormalButton textButton="Recommend" @click="getRecommendation"></NormalButton></RouterLink>
     </div>
 </template>
 <script>
 import { RouterLink } from 'vue-router'
 import NormalButton from '../components/NormalButton.vue'
+import axios from 'axios'
 export default{
     name: 'RecommendationView',
     components:{
@@ -85,9 +86,22 @@ export default{
     },
     data(){
         return{
-            picked: int,
+            picked: Number,
             checkedCategories:[],
-            title: String
+            title: ''
+        }
+    }, 
+    methods:{
+        async getRecommendation(){
+            const titleEncoded = encodeURIComponent(this.title);
+            const categoriesEncoded = encodeURIComponent(this.checkedCategories);
+            const daysEncoded = encodeURIComponent(this.picked)
+            
+            axios.get(`http://localhost:8080/recommendation?title=${titleEncoded}&days=${daysEncoded}&categories=${categoriesEncoded}`)
+            .then(response =>{
+                this.$store.commit('recommendBooks', response.data);
+            });
+            
         }
     }
 }

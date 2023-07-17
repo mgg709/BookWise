@@ -1,7 +1,6 @@
 package com.example.backend.repositories;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;

@@ -7,10 +7,13 @@ import { createStore } from 'vuex'
 
 const store = createStore({
                             state(){
-                                return {searchBooks:[]}
+                                return {searchBooks:[], recommendations:[]}
                                 },mutations: {
                                     passBooks(state, books){
                                         state.searchBooks = books;
+                                    },
+                                    recommendBooks(state, books){
+                                        state.recommendations = books;
                                     }
                                 }
                         });

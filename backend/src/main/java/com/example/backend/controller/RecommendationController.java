@@ -1,7 +1,7 @@
 package com.example.backend.controller;
 
 import com.example.backend.model.Book;
-import com.example.backend.service.BookService;
+import com.example.backend.repositories.BookRepository;
 import com.example.backend.service.RecommendationService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,5 @@ public class RecommendationController {
     public ResponseEntity<List<Book>> recommendBooks(@RequestParam String title, @RequestParam String[] categories, @RequestParam Integer days){
         return new ResponseEntity<List<Book>>(recommendationService.getRecommendations(title, categories, days), HttpStatus.OK);
     }
-
-
 
 }
