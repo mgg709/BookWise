@@ -51,4 +51,8 @@ export default {
         width: 50%;
     }
 }
+
+.s-book span{
+    font-size: 20px;
+}
 </style>
