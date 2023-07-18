@@ -3,7 +3,7 @@
         <span>Our recommendation is...</span>
         <div class="solution-books" >
             <div class="s-book" v-for="book in booksRecommended">
-                <BookCard :book="book"></BookCard>
+                <BookCard :book="book" class="space"></BookCard>
                 <NormalButton textButton="Add to favourites"></NormalButton>
             </div>
         </div>
@@ -48,12 +48,11 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    & img{
-        width: 50%;
-    }
 }
 
-.s-book span{
-    font-size: 20px;
+.s-book .space{
+    margin-bottom: 20px;
 }
+
+
 </style>

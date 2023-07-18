@@ -1,42 +1,46 @@
-<script setup>
-import BookCard from '../components/BookCard.vue'
-import Footer from '../components/Footer.vue'
-</script>
-
 <template>
-  <h1>Top selling books</h1>
+  <span>Top selling books</span>
   <div class="top-sellings-books">
     <div class="layer-list">
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
     </div>
   </div>
-  <h1>Top best rated</h1>
+  <span>Top best rated</span>
   <div class="top-best-rated">
-    <div class="layer-list">
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
+    <div class="layer-list" v-for="book in booksBestRated">
+      <BookCard :book=book></BookCard>
     </div>
   </div>
 </template>
-  
-  <style>
+<script>
+import BookCard from '@/components/BookCard.vue'
+import axios from 'axios'
+export default {
+  name: 'SellingView',
+  components: {
+    BookCard,
+  },
+  data() {
+    return {
+      booksBestRated: [],
+    }
+  },
+  methods: {
+    async getBooksBestRated() {
+      try {
+        const {data} = await axios.get('http://localhost:8080/books/getTenBestRated')
+        console.log(data)
+        this.booksBestRated = data
+      } catch (error) {
+        console.log(error)
+      }
+    },
+  },
+  mounted() {
+    this.getBooksBestRated()
+  },
+}
+</script>  
+<style>
   *{
     margin:0;
     padding: 0;
