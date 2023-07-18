@@ -127,4 +127,11 @@ public class BookService {
         booksBestRated.sort((b1, b2) -> b2.getNumberOfReviews().compareTo(b1.getNumberOfReviews()));
         return ResponseEntity.ok(booksBestRated.subList(0, 10));
     }
+
+    public ResponseEntity<List<Book>> get10BestSellings(){
+        List<Book> books = new ArrayList<Book>();
+        books = bookRepository.findAll();
+        books.sort((b1, b2) -> b1.getAvilability().compareTo(b2.getAvilability()));
+        return ResponseEntity.ok(books.subList(0, 10));
+    }
 }

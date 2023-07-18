@@ -83,4 +83,9 @@ public class BookController {
     public ResponseEntity<List<Book>> getTenBestRated(){
         return bookService.get10BestRated();
     }
+
+    @GetMapping("getTenBestSellings")
+    public ResponseEntity<List<Book>> getTenBestSellings(){
+        return bookService.get10BestSellings();
+    }
 }

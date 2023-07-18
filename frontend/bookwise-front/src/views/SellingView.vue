@@ -1,7 +1,8 @@
 <template>
   <span>Top selling books</span>
   <div class="top-sellings-books">
-    <div class="layer-list">
+    <div class="layer-list" v-for="book in booksBestSellings">
+      <BookCard :book=book></BookCard>
     </div>
   </div>
   <span>Top best rated</span>
@@ -22,14 +23,22 @@ export default {
   data() {
     return {
       booksBestRated: [],
+      booksBestSellings: [],
     }
   },
   methods: {
     async getBooksBestRated() {
       try {
         const {data} = await axios.get('http://localhost:8080/books/getTenBestRated')
-        console.log(data)
         this.booksBestRated = data
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async getBooksBestSellings() {
+      try {
+        const {data} = await axios.get('http://localhost:8080/books/getTenBestSellings')
+        this.booksBestSellings = data
       } catch (error) {
         console.log(error)
       }
