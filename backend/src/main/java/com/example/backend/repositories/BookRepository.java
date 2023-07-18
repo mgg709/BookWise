@@ -11,7 +11,6 @@ import com.example.backend.model.Book;
 
 public interface BookRepository extends ElasticsearchRepository<Book, Integer>{
 
-    //TODO: (Possible review) The's already a findAll method. The difference is the return type.
     public List<Book> findAll();
 
     public List<Book> findByTitle(String title);

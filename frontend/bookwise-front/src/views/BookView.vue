@@ -2,7 +2,7 @@
     <div class="book-view-content">
       <div class="book-details">
         <div class="book-cover">
-          <img :src=book[0].imageLink alt="">
+          <img :src=book[0].imageLink alt="a">
           <div class="book-data">
             <div class="book-titulo">
               <span>{{ book[0].title }}</span>
@@ -22,7 +22,9 @@
         </div>
         <div class="book-reviews">
             <span>Reviews</span>
-            <ReviewCard />
+            <div class="for-Review" v-for="review in reviews">
+              <ReviewCard :review=review> </ReviewCard>
+            </div>
         </div>
       </div>
       <aside class="related-books">
@@ -48,7 +50,8 @@ export default{
   data(){
     return{
       book: Object,
-      books:[]
+      books:[],
+      reviews:[]
     }
   },
   methods: {
@@ -71,13 +74,20 @@ export default{
       this.books = data;
       this.books.sort(() => Math.random() - 0.5);
       console.log(this.books);
-    }  
+    },
+     async getReviews(){
+      const route = useRoute();
+            const {data} = await axios.get(`http://localhost:8080/reviews/book/${route.params.title}`)
+            this.reviews = data;
+            console.log(data);
+        }  
   },
   created(){
     this.getBookByTitle();
   },
   beforeMount(){
     this.getBookByCategory();
+    this.getReviews();
   },
   mounted(){
     this.fillStars();
