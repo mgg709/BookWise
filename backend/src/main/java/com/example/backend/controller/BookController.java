@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.data.domain.PageImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,8 +44,6 @@ public class BookController {
         return bookService.findAll();
     }
 
-
-    //TODO: Remove this in the future
     @GetMapping("{word}")
     public List<Book> findByWord (@PathVariable String word) {
 
@@ -71,6 +71,11 @@ public class BookController {
     public List<Book> findByCategory(@PathVariable final String title){
         List<Book> books = this.findByTitle(title);
         return bookService.findByCategory(books.get(0).getCategory());
+    }
+
+    @GetMapping("/getTwentyBooks/{page}")
+    public PageImpl<Book> getTwentyBooks(@PathVariable final int page){
+        return bookService.getTwentyBooks(page);
     }
 
 }

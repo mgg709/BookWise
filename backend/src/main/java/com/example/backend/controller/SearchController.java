@@ -24,7 +24,6 @@ public class SearchController {
 
 
     //This is just a placeholder while learning more Elastic
-    //TODO: Define an algorithm for this
     @GetMapping("/advanced")
     public List<Book> advancedSearch(
             @RequestParam(name = "tittle", defaultValue = "", required = false)
