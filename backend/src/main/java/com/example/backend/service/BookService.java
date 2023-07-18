@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.example.backend.model.Book;
 import com.example.backend.repositories.BookRepository;
 
+
 @Service
 @RequiredArgsConstructor
 public class BookService {
@@ -98,8 +99,8 @@ public class BookService {
         }
 
         public PageImpl<Book> getTwentyBooks(int page){
-            PageRequest pageWithThirtyBooks = PageRequest.of(page, 20);
-            return new PageImpl<>(bookRepository.findAll(pageWithThirtyBooks).toList(), pageWithThirtyBooks, bookRepository.count());
+            PageRequest pageWithTwentyBooks = PageRequest.of(page, 20);
+            return new PageImpl<>(bookRepository.findAll(pageWithTwentyBooks).toList(), pageWithTwentyBooks, bookRepository.count());
         }
 
 

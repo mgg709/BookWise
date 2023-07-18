@@ -54,7 +54,7 @@ export default{
   methods: {
     async getBookByTitle(){
       const route = useRoute();
-      const {data} = await axios.get(`http://localhost:8080/books/${route.params.title}`);
+      const {data} = await axios.get(`http://localhost:8080/books/getTitle/${route.params.title}`);
       this.book = data;
       console.log(this.book);      
     },
