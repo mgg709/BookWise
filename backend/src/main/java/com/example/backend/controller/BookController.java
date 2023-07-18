@@ -45,8 +45,6 @@ public class BookController {
         return bookService.findAll();
     }
 
-
-    //TODO: Remove this in the future
     @GetMapping("{word}")
     public List<Book> findByWord (@PathVariable String word) {
 
@@ -76,7 +74,7 @@ public class BookController {
         return bookService.findByCategory(books.get(0).getCategory());
     }
 
-    @GetMapping("getTwentyBooks/{page}")
+    @GetMapping("/getTwentyBooks/{page}")
     public PageImpl<Book> getTwentyBooks(@PathVariable final int page){
         return bookService.getTwentyBooks(page);
     }
