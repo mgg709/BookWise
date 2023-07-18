@@ -1,19 +1,68 @@
-<script setup>
-
-</script>
 <template>
     <div class="content-bar">
-        <span>logo</span>
-        <span class="selling-books-title">Top selling books</span>
-        <span class="recommend-books-title">Recommend me a book</span>
-        <input type="text" class="search-input" placeholder="Título...">     
+        <RouterLink class="logo" to="/">logo</RouterLink>
+        <RouterLink class="selling-books-title" to="/selling">Top selling books</RouterLink>
+        <RouterLink class="recommend-books-title" to="/recommendation">Recommend me a book</RouterLink>
+        <input type="text" class="search-input" id="input-search" v-on:keyup.enter="submit()" placeholder="Título...">     
         <div class="login-buttons">
-            <button>Sign in</button>
-            <button>Sign up</button>
+            <RouterLink to="/login">
+            <NormalButton textButton="Sign in"></NormalButton>
+            </RouterLink>
+            <RouterLink to="/signup">
+            <NormalButton textButton="Sign up"></NormalButton>
+            </RouterLink>
         </div>
        
     </div>
 </template>
+
+<script>
+import { RouterLink } from 'vue-router';
+import axios from 'axios';
+
+import NormalButton from './NormalButton.vue';
+export default {
+    name: "NavigationBar",
+    components: {
+        NormalButton
+    },
+    data() {
+        return {
+            books:[]
+        }
+    },
+  methods: {
+    redirectToLogIn() {
+      this.$router.push('/login');
+    },
+    redirectToSellings(){
+        this.$router.push('/selling');
+    },
+    redirectToIndex(){
+        this.$router.push('/');
+    },
+    redirectToSignUp(){
+        this.$router.push('/signup');
+    },
+    async searchBooks(title) {
+        const {data} = await axios.get(`http://localhost:8080/books/${title}`);
+        console.log(data);
+        this.$store.commit('passBooks', data);
+        console.log(this.$store.state.searchBooks)
+    },
+    submit() {
+        var input = document.getElementById("input-search");
+        var texto = input.value;
+        this.searchBooks(texto);
+        this.redirectToBookList();
+    },
+    redirectToBookList(){
+        this.$router.push('/result');
+    }
+  }
+}
+</script>
+
 <style scoped>
 .content-bar {
     display: flex;
@@ -22,13 +71,15 @@
     width: 100%;
     height: 10vh;
     padding: 0 2rem;
+    color: var(--color-text);
 }
 
 .selling-books-title{
     transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-.selling-books-title:hover{
+.selling-books-title:hover,
+.logo:hover{
     cursor: pointer;
 }
 
@@ -48,6 +99,7 @@
 
 .recommend-books-title{
     transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    color: var(--color-text);
 }
 
 .recommend-books-title:hover{
@@ -83,7 +135,6 @@
     justify-content: space-evenly;
     align-items: center;
     width: 15%;
+    height: 100%;
 }
-
-
 </style>

@@ -1,7 +1,3 @@
-<script setup>
-import BookCard from '../components/BookCard.vue'
-</script>
-
 <template>
  <div class="container-home">
   <div id="parallelogram-left">
@@ -14,15 +10,46 @@ import BookCard from '../components/BookCard.vue'
     </div>
   </div>
   <div class="book-list">
-    <BookCard></BookCard>
-    <BookCard></BookCard>
-    <BookCard></BookCard>
-    <BookCard></BookCard>
-  </div>  
-  
+    <span v-for="book in books">
+      <BookCard :book=book widthSize="100%"></BookCard>
+    </span>
+    
+  </div>
+  <NormalButton id="load-more" textButton="Load more" @click="loadMore"></NormalButton>
 </div>
-</template>
 
+</template>
+<script>
+import BookCard from '../components/BookCard.vue'
+import NormalButton from '../components/NormalButton.vue'
+import axios from 'axios'
+
+export default {
+  name: "HomeView",
+  components: {
+    BookCard,
+    NormalButton
+  },
+  data(){
+    return{
+      books:[],
+      counter:0
+    }
+  },
+  methods:{
+    async loadMore(){
+      const data = await axios.get(`http://localhost:8080/books/getTwentyBooks/${this.counter}`)
+      data.data.content.forEach(element => {
+        this.books.push(element);
+      });
+      this.counter++;
+    }
+  },
+  mounted(){
+    this.loadMore()
+  }
+}
+</script>
 <style>
 .container-home{
     overflow:hidden;
@@ -30,9 +57,10 @@ import BookCard from '../components/BookCard.vue'
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width:100%;
 }
 #parallelogram-right {
-  display: flex;
+    display: flex;
     width: 100%;
     height: 50vh;
 
@@ -58,15 +86,16 @@ import BookCard from '../components/BookCard.vue'
 }
 
 #parallelogram-right img{
-  width: 55%;
+  width: 60%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 #parallelogram-left {
   display: flex;
   width: 100%;
-  height: 45vh;
+  height: 50vh;
   background: var(--color-black-light);
   overflow:hidden;
   position:relative;
@@ -88,10 +117,24 @@ import BookCard from '../components/BookCard.vue'
 }
 
 .book-list{
-  margin-top: 50px;
-  margin-bottom: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  margin: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 100px;
+  margin: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 100px;
 }
+
+
+.footer{
+  width: 100%;
+  text-align: center;
+}
+
+#load-more{
+  margin-bottom: 15px;
+}
+
 </style>

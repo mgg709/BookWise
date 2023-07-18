@@ -1,14 +1,15 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 import NavigationBar from './components/NavigationBar.vue'
+import Footer from './components/Footer.vue'
 </script>
 
 <template>
   
   <section class="content">
     <NavigationBar class="navbar"></NavigationBar>
-    <RouterView></RouterView>
+    <RouterView class="main"></RouterView>
+    <Footer class="footer"></Footer>
   </section>
   
 </template>
@@ -17,14 +18,24 @@ import NavigationBar from './components/NavigationBar.vue'
 .content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+}
+
+.main{
+  min-height: calc(100vh - 97px - 146px);
 }
 
 .navbar{
   top: 0;
+}
+.footer{
+  width: 100%;
+  text-align: center;
+  bottom: 0;
+  position: relative;
 }
 
 </style>
