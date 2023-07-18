@@ -45,7 +45,8 @@ export default {
     },
   },
   mounted() {
-    this.getBooksBestRated()
+    this.getBooksBestRated(),
+    this.getBooksBestSellings()
   },
 }
 </script>  
