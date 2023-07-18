@@ -37,7 +37,7 @@ public class RecommendationService {
             }
         } else if(days==3){
             for (Book b : books){
-                if(b.getNumberOfPages() <=200 &&  b.getNumberOfPages() > 300)
+                if(b.getNumberOfPages() <=200 ||  b.getNumberOfPages() > 300)
                     booksToRemove.add(b);
             }
         }else{
@@ -53,13 +53,13 @@ public class RecommendationService {
                 booksSameCategory.add(b);
             }
         }
-
+        books.removeAll(booksSameCategory);
         booksSameCategory.sort((b1,b2) -> b2.getStars().getLowerBound().getValue().get().compareTo(b1.getStars().getLowerBound().getValue().get()));
         books.sort((b1,b2) -> b2.getStars().getLowerBound().getValue().get().compareTo(b1.getStars().getLowerBound().getValue().get()));
         for(int i = 0; i<2 && i<booksSameCategory.size();i++){
             recommendations.add(i, booksSameCategory.get(i));
         }
-        if(!books.isEmpty()){
+        if(!books.isEmpty() && !recommendations.isEmpty()){
             if(books.get(0) != recommendations.get(0) && books.get(0) != recommendations.get(1)){
                 recommendations.add(2, books.get(0));
             }

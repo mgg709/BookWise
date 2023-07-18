@@ -1,10 +1,9 @@
 <template>
     <div class="solution-content">
         <span>Our recommendation is...</span>
-        <div class="solution-books" v-for="book in booksRecommended">
-            <div class="s-book">
-                <img :src="book.imageLink" alt="">
-                <span>{{ book.title }}</span>
+        <div class="solution-books" >
+            <div class="s-book" v-for="book in booksRecommended">
+                <BookCard :book="book"></BookCard>
                 <NormalButton textButton="Add to favourites"></NormalButton>
             </div>
         </div>
@@ -14,9 +13,11 @@
 <script>
 import { mapState } from 'vuex';
 import NormalButton from '../components/NormalButton.vue'
+import BookCard from '../components/BookCard.vue'
 export default {
     components: {
-    NormalButton
+        BookCard,
+        NormalButton
     },
     computed: mapState({
             booksRecommended() {
