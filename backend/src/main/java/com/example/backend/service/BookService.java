@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.elasticsearch.core.Range;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.model.Book;
@@ -114,4 +115,16 @@ public class BookService {
         return bookRepository.findByString(string);
     }
 
+    public ResponseEntity<List<Book>> get10BestRated(){
+        List<Book> books = new ArrayList<Book>();
+        List<Book> booksBestRated = new ArrayList<Book>();
+        books = bookRepository.findAll();
+        for(Book b: books){
+            if(b.getStars().getLowerBound().getValue().get() ==5){
+                booksBestRated.add(b);
+            }
+        }
+        booksBestRated.sort((b1, b2) -> b2.getNumberOfReviews().compareTo(b1.getNumberOfReviews()));
+        return ResponseEntity.ok(booksBestRated.subList(0, 10));
+    }
 }

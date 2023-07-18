@@ -27,31 +27,33 @@ public class RecommendationService {
         }
         if(days == 1){
             for (Book b : books){
-                if(b.getNumberOfPages() > 100)
+                if(b.getNumberOfPages() > 200)
                     booksToRemove.add(b);
             }
         } else if(days==2){
             for (Book b : books){
-                if(b.getNumberOfPages() <=100 ||  b.getNumberOfPages() > 200)
+                if(b.getNumberOfPages() <=200 ||  b.getNumberOfPages() > 300)
                     booksToRemove.add(b);
             }
         } else if(days==3){
             for (Book b : books){
-                if(b.getNumberOfPages() <=200 ||  b.getNumberOfPages() > 300)
+                if(b.getNumberOfPages() <=300 ||  b.getNumberOfPages() > 400)
                     booksToRemove.add(b);
             }
         }else{
             for (Book b : books){
-                if(b.getNumberOfPages() <=300)
+                if(b.getNumberOfPages() <=400)
                     booksToRemove.add(b);
             }
         }
         books.removeAll(booksToRemove);
         List<Book> book = bookRepository.findByTitle(title);
+        if(book.size() > 0){
         for (Book b : books) {
             if (b.getCategory().equals(book.get(0).getCategory())) {
                 booksSameCategory.add(b);
             }
+        }
         }
         books.removeAll(booksSameCategory);
         booksSameCategory.sort((b1,b2) -> b2.getStars().getLowerBound().getValue().get().compareTo(b1.getStars().getLowerBound().getValue().get()));
@@ -63,6 +65,11 @@ public class RecommendationService {
             if(books.get(0) != recommendations.get(0) && books.get(0) != recommendations.get(1)){
                 recommendations.add(2, books.get(0));
             }
+        }
+        if(!books.isEmpty() && recommendations.isEmpty()){
+           for(int i = 0; i<3 && i<books.size();i++){
+            recommendations.add(i, books.get(i));
+           }
         }
         return recommendations;
     }
