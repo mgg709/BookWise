@@ -25,6 +25,8 @@ public class Book {
     String category;
     @Field(type = FieldType.Double, name = "price")
     Double price;
+    @Field(type = FieldType.Integer, name = "avilability")
+    Integer avilability;
     @Field(type = FieldType.Integer, name = "numberOfReviews")
     Integer numberOfReviews;
     @Field(type = FieldType.Text, name = "description")
