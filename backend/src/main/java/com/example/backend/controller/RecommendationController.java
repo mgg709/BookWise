@@ -1,7 +1,6 @@
 package com.example.backend.controller;
 
 import com.example.backend.model.Book;
-import com.example.backend.repositories.BookRepository;
 import com.example.backend.service.RecommendationService;
 
 import lombok.RequiredArgsConstructor;
