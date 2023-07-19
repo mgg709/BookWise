@@ -4,9 +4,10 @@
         <div class="book-cover">
           <img :src=book[0].imageLink alt="a">
           <div class="book-data">
+import NormalButton from '../components/NormalButton.vue'
             <div class="book-titulo">
               <span>{{ book[0].title }}</span>
-              <NormalButton textButton="Añadir a favoritos"></NormalButton>
+              <NormalButton textButton="Add to favourites"></NormalButton>
             </div>
             <span>{{ book[0].author }}</span>
             <span>{{ book[0].category }}</span>
@@ -22,6 +23,7 @@
         </div>
         <div class="book-reviews">
             <span>Reviews</span>
+            <NormalButton textButton="Add review"></NormalButton>
             <div class="for-Review" v-for="review in reviews">
               <ReviewCard :review=review> </ReviewCard>
             </div>
@@ -45,8 +47,9 @@ export default{
   name: 'BookView',
   components:{
     ReviewCard,
+    NormalButton,
     NormalButton
-  },
+},
   data(){
     return{
       book: Object,
@@ -161,6 +164,10 @@ export default{
   align-items: center;
 }
 
+.book-reviews span{
+  margin-bottom: 20px;
+}
+
 .related-books{
   display: flex;
   flex-direction: column;
@@ -196,5 +203,7 @@ export default{
   width: 40%;
   margin: 10px 0px;
 }
+
+
 </style>
   
