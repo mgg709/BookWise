@@ -41,4 +41,14 @@ public class ReviewService{
           
     }
 
+    public ResponseEntity<Review> removeReview(String username, String bookTitle, String reviewTitle){
+        try{
+            Review reviewToRemove = reviewRepository.findByTitleBookAndUsernameAndTitle(bookTitle, username, reviewTitle);
+            reviewRepository.delete(reviewToRemove);
+            return new ResponseEntity<Review>(reviewToRemove, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
