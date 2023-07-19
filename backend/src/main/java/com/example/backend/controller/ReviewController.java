@@ -2,9 +2,13 @@ package com.example.backend.controller;
 
 import java.util.List;
 
+import org.apache.catalina.connector.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,11 +19,8 @@ import com.example.backend.service.ReviewService;
 @RequestMapping("/reviews")
 public class ReviewController {
 
+    @Autowired
     private ReviewService reviewService;
-
-    public ReviewController(ReviewService reviewService){
-        this.reviewService=reviewService;
-    }
 
     @GetMapping
     public ResponseEntity<List<Review>> getAllReviews(){
@@ -34,5 +35,11 @@ public class ReviewController {
     @GetMapping("user/{username}")
     public ResponseEntity<List<Review>> getReviewsByUsername(@PathVariable final String username){
         return ResponseEntity.ok(reviewService.getReviewsByUsername(username));
+    }
+
+    @PostMapping("/addReview")
+    public ResponseEntity<Review> addReview(@RequestBody Review review){
+        Review newReview = new Review(review.getUsername(), review.getTitlebook(), review.getAssessment(), review.getDescription(), review.getTitle());
+        return reviewService.addReview(newReview);
     }
 }

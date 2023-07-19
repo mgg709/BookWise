@@ -20,4 +20,12 @@ public class Review {
     private Integer assessment;
     private String titlebook;
     private String username;
+
+    public Review(String title, String description, Integer assessment, String titlebook, String username) {
+        this.title = title;
+        this.description = description;
+        this.assessment = assessment;
+        this.titlebook = titlebook;
+        this.username = username;
+    }
 }
