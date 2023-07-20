@@ -31,7 +31,7 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    public List<Book> findByTitle(final String title){
+    public Book findByTitle(final String title){
         return bookRepository.findByTitle(title);
     }
 

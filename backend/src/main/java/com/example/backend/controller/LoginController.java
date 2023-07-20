@@ -18,7 +18,7 @@ public class LoginController {
 
 
     @PostMapping
-    public ResponseEntity login(@RequestParam(name = "user") final String user,
+    public ResponseEntity<String> login(@RequestParam(name = "user") final String user,
                                 @RequestParam(name = "password") final String password,
                                 HttpSession session) {
 

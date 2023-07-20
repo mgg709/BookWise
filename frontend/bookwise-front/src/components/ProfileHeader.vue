@@ -1,8 +1,8 @@
 <template>
     <header>
-  <div class="container">
-    <div class="content">
-      <div class="image-container">
+  <div class="ph-container">
+    <div class="ph-content">
+      <div class="ph-image-container">
         <img :src="`src/assets/${imageName}.png`" alt="User profile img">
         <p>USERNAME</p>
       </div>
@@ -32,24 +32,24 @@
 </script>
 
 <style>
-.container {
+.ph-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.image-container {
+.ph-image-container {
   display: flex;
   align-items: center;
 }
 
-.image-container img {
+.ph-image-container img {
     width: 15.625em;
     height: 15.625em;
 }
 
-.image-container p {
+.ph-image-container p {
   margin-left: 10px; /* Espacio entre la imagen y el nombre de usuario */
 }
 

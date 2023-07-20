@@ -1,11 +1,15 @@
 package com.example.backend.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.backend.model.Book;
 import com.example.backend.model.User;
 import com.example.backend.repositories.UserRepository;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class UserService{
 
+    @Autowired
     private final UserRepository userRepository;
+    
+    @Autowired
+    private final BookService bookService;
 
 
 
@@ -77,6 +85,16 @@ public class UserService{
         }catch (Exception e) {
             return;
         }
+    }
+
+    public List<Book> getFavourites(String username){
+        User user = userRepository.findItemByUsername(username);
+        List<String> favourites = user.getFavourites();
+        List<Book> books = new ArrayList<Book>();
+        for (String title: favourites){
+            books.add(bookService.findByTitle(title));
+        }
+        return books;
     }
 
 

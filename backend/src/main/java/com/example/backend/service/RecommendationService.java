@@ -22,7 +22,6 @@ public class RecommendationService {
         List<Book> recommendations = new ArrayList<Book>();
         List<Book> booksSameCategory = new ArrayList<Book>();
         for (String category : categories) {
-            System.out.println(category);
             books.addAll(bookRepository.findByCategory(category));
         }
         if(days == 1){
@@ -47,10 +46,11 @@ public class RecommendationService {
             }
         }
         books.removeAll(booksToRemove);
-        List<Book> book = bookRepository.findByTitle(title);
-        if(book.size() > 0){
+        if(!title.isEmpty()){
+        Book book = bookRepository.findByTitle(title);
+       
         for (Book b : books) {
-            if (b.getCategory().equals(book.get(0).getCategory())) {
+            if (b.getCategory().equals(book.getCategory())) {
                 booksSameCategory.add(b);
             }
         }

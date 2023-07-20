@@ -1,6 +1,6 @@
 <template>
-    <div class="container">
-    <div class="content">
+    <div class="su-container">
+    <div class="su-content">
         <h1>Sign-Up to BookWise</h1>
         <div class="action-buttons">
             <button class="primary-button sign-in-button">
@@ -18,22 +18,22 @@
         </div>
 
         <div class="email-log-in">
-            <input type="text" id="log-in" placeholder="Email">
+            <input class="su-input" type="text" id="log-in" placeholder="Email">
             <label for="log-in">Email</label>
         </div>
 
         <div class="username-log-in">
-            <input type="text" id="user-log-in" placeholder="Username">
+            <input class="su-input" type="text" id="user-log-in" placeholder="Username">
             <label for="user-log-in">Username</label>
         </div>
 
         <div class="password-log-in">
-            <input type="password" id="pass-log-in" placeholder="Password">
+            <input class="su-input" type="password" id="pass-log-in" placeholder="Password">
             <label for="pass-log-in">Password</label>
         </div>
 
         <div class="repeat-password-log-in">
-            <input type="password" id="rep-pass-log-in" placeholder="Repeat Password">
+            <input class="su-input" type="password" id="rep-pass-log-in" placeholder="Repeat Password">
             <label for="rep-pass-log-in">Repeat Password</label>
         </div>
 
@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style>
-.container{
+.su-container{
     max-width: 37.5rem;
     width: 100%;
     min-height: 85vh;
@@ -73,13 +73,13 @@ export default {
     color: white;
 }
 
-.content{
+.su-content{
     width: 18.75rem;
     text-align: center;
     margin-inline: auto;
 }
 
-.content h1{
+.su-content h1{
     margin-block: 1.75rem;
 }
 
@@ -130,11 +130,11 @@ export default {
     height: 1.5rem;
 }
 
-input::placeholder{
+.su-input::placeholder{
     opacity: 0;
 }
 
-input + label{
+.su-input + label{
     position: absolute;
     top: 1.25rem;
     left: 0.625rem;
@@ -144,16 +144,16 @@ input + label{
     transition: 200ms ease;
 }
 
-input:focus{
+.su-input:focus{
     outline: 0.063rem solid #1d9bf0;
 }
 
-input:focus + label{
+.su-input:focus + label{
     color: #1d9bf0;
 }
 
-input:not(:placeholder-shown) + label,
-input:focus + label{
+.su-input:not(:placeholder-shown) + label,
+.su-input:focus + label{
     top: 0.375rem;
     left: 0.625rem;
     font-size: 0.75rem;

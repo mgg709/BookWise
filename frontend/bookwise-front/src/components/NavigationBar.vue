@@ -4,13 +4,20 @@
         <RouterLink class="selling-books-title" to="/selling">Top selling books</RouterLink>
         <RouterLink class="recommend-books-title" to="/recommendation">Recommend me a book</RouterLink>
         <input type="text" class="search-input" id="input-search" v-on:keyup.enter="submit()" placeholder="Título...">     
-        <div class="login-buttons">
+        <div class="login-buttons" v-if="this.$store.state.username == undefined">
             <RouterLink to="/login">
             <NormalButton textButton="Sign in"></NormalButton>
             </RouterLink>
             <RouterLink to="/signup">
             <NormalButton textButton="Sign up"></NormalButton>
             </RouterLink>
+        </div>
+        <div class="profile-btns" v-else>
+            <RouterLink to="/review">
+                <span>{{ this.$store.state.username }}</span>
+                <img src="../assets/user.png" alt="Imagen de usuario">
+            </RouterLink>
+            <NormalButton textButton="Log out" @click="logout"></NormalButton>
         </div>
        
     </div>
@@ -28,7 +35,7 @@ export default {
     },
     data() {
         return {
-            books:[]
+            books:[],
         }
     },
   methods: {
@@ -58,7 +65,14 @@ export default {
     },
     redirectToBookList(){
         this.$router.push('/result');
+    },
+    logout(){
+        localStorage.removeItem('username');
+        this.$store.commit('loginUser', undefined);
     }
+  },
+  beforeMount(){
+    this.$store.commit('loginUser', localStorage.getItem('username'));
   }
 }
 </script>
@@ -136,5 +150,26 @@ export default {
     align-items: center;
     width: 15%;
     height: 100%;
+}
+.profile-btns{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+}
+
+.profile-btns a{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    text-decoration: none;
+    color: var(--color-text);
+}
+
+.profile-btns img{
+    width: 15%;
 }
 </style>

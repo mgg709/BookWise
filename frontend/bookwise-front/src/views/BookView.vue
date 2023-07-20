@@ -2,15 +2,14 @@
     <div class="book-view-content">
       <div class="book-details">
         <div class="book-cover">
-          <img :src=book[0].imageLink alt="a">
+          <img :src=book.imageLink alt="a">
           <div class="book-data">
-import NormalButton from '../components/NormalButton.vue'
             <div class="book-titulo">
-              <span>{{ book[0].title }}</span>
-              <NormalButton textButton="Add to favourites"></NormalButton>
+              <span>{{ book.title }}</span>
+              <NormalButton textButton="Add to favourites" @click="addFavourite"></NormalButton>
             </div>
-            <span>{{ book[0].author }}</span>
-            <span>{{ book[0].category }}</span>
+            <span>{{ book.author }}</span>
+            <span>{{ book.category }}</span>
             <div class="bv-rating-book-row">
             <button class="bv-star">&#9734</button>
             <button class="bv-star">&#9734</button>
@@ -18,7 +17,7 @@ import NormalButton from '../components/NormalButton.vue'
             <button class="bv-star">&#9734</button>
             <button class="bv-star">&#9734</button>
         </div>
-            <span>{{ book[0].description }}</span>
+            <span>{{ book.description }}</span>
           </div>
         </div>
         <div class="book-reviews">
@@ -31,9 +30,9 @@ import NormalButton from '../components/NormalButton.vue'
       </div>
       <aside class="related-books">
         <span>Related books</span>
-        <img v-if="book[0].title != books[0].title" :src=this.books[0].imageLink alt="">
-        <img v-if="book[0].title != books[1].title" :src=this.books[1].imageLink alt="">
-        <img v-if="book[0].title != books[2].title" :src=this.books[2].imageLink alt="">
+        <img v-if="book.title != books[0].title" :src=this.books[0].imageLink alt="">
+        <img v-if="book.title != books[1].title" :src=this.books[1].imageLink alt="">
+        <img v-if="book.title != books[2].title" :src=this.books[2].imageLink alt="">
       </aside>
     </div>
 </template>
@@ -65,7 +64,7 @@ export default{
       console.log(this.book);      
     },
     fillStars(){
-            let stars = this.book[0].stars.lowerBound.value;
+            let stars = this.book.stars.lowerBound.value;
             const starButtons = this.$el.querySelectorAll(".bv-rating-book-row > button")
             for(let i = 4; i >= 5-stars; i--){
                 starButtons[i].innerHTML = "&#9733";
@@ -83,7 +82,11 @@ export default{
             const {data} = await axios.get(`http://localhost:8080/reviews/book/${route.params.title}`)
             this.reviews = data;
             console.log(data);
-        }  
+     },
+    async addFavourite(){
+      const {data} = await axios.post(`http://localhost:8080/users/addFavourite?username=${this.$store.state.username}&booktitle=${this.book.title}`);
+      console.log(data);
+    }  
   },
   created(){
     this.getBookByTitle();
