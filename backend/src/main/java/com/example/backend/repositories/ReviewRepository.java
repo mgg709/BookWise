@@ -15,4 +15,6 @@ public interface ReviewRepository extends MongoRepository<Review,String>{
     @Query("{titlebook:'?0'}")
     public List<Review> findByTitleBook(String titleBook);
 
+    @Query("{titlebook:'?0', username:'?1', title:'?2'}")
+    public Review findByTitleBookAndUsernameAndTitle(String titleBook, String username, String title);
 }
