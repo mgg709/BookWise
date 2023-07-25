@@ -159,8 +159,13 @@ public class BookService {
 
     public ResponseEntity<List<Book>> get10BestSellings(){
         List<Book> books = new ArrayList<Book>();
+        List<Book> booksBestSellings = new ArrayList<Book>();
         books = bookRepository.findAll();
-        books.sort((b1, b2) -> b1.getAvilability().compareTo(b2.getAvilability()));
-        return ResponseEntity.ok(books.subList(0, 10));
+        for(Book book : books){
+            if(book.getAvilability()==1){
+                booksBestSellings.add(book);
+            }
+        }
+        return ResponseEntity.ok(booksBestSellings.subList(0, 10));
     }
 }
