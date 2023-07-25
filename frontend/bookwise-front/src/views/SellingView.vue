@@ -29,7 +29,7 @@ export default {
   methods: {
     async getBooksBestRated() {
       try {
-        const {data} = await axios.get('http://localhost:8080/books/getTenBestRated')
+        const {data} = await axios.get('http://localhost:8080/books/best-rated')
         this.booksBestRated = data
       } catch (error) {
         console.log(error)
@@ -37,7 +37,7 @@ export default {
     },
     async getBooksBestSellings() {
       try {
-        const {data} = await axios.get('http://localhost:8080/books/getTenBestSellings')
+        const {data} = await axios.get('http://localhost:8080/books/best-sellers')
         this.booksBestSellings = data
       } catch (error) {
         console.log(error)

@@ -52,7 +52,7 @@ export default {
         this.$router.push('/signup');
     },
     async searchBooks(title) {
-        const {data} = await axios.get(`http://localhost:8080/books/${title}`);
+        const {data} = await axios.get(`http://localhost:8080/search/${title}`);
         console.log(data);
         this.$store.commit('passBooks', data);
         console.log(this.$store.state.searchBooks)

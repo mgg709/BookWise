@@ -59,7 +59,7 @@ data(){
 methods: {
   async getBookByTitle(){
     const route = useRoute();
-    const {data} = await axios.get(`http://localhost:8080/books/getTitle/${route.params.title}`);
+    const {data} = await axios.get(`http://localhost:8080/search/title/${route.params.title}`);
     this.book = data;
     console.log(this.book);      
   },
@@ -72,7 +72,7 @@ methods: {
       },
   async getBookByCategory(){
     const route = useRoute();
-    const {data} = await axios.get(`http://localhost:8080/books/category/${route.params.title}`);
+    const {data} = await axios.get(`http://localhost:8080/search/category/${route.params.title}`);
     this.books = data;
     this.books.sort(() => Math.random() - 0.5);
     console.log(this.books);

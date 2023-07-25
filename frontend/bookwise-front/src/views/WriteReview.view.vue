@@ -53,7 +53,7 @@ export default {
             };
             console.log(aux)
             this.review = aux;
-            const {data} = await axios.post(`http://localhost:8080/reviews/addReview`, this.review);
+            const {data} = await axios.put(`http://localhost:8080/reviews`, this.review);
             console.log(data)
             this.redirectToBook(aux.titlebook);
         },
