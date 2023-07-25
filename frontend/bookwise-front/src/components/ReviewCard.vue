@@ -91,7 +91,7 @@ export default {
     display: flex;
     width: 100%;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     transform: rotateY(180deg);
 }
 .star{

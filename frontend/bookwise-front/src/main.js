@@ -18,6 +18,10 @@ const store = createStore({
                                     loginUser(state, username){
                                         state.username = username;
                                     }
+                                },getters:{
+                                    username(state){
+                                        return state.username;
+                                    }
                                 }
                         });
 const app = createApp(App)

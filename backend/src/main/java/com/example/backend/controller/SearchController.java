@@ -25,7 +25,7 @@ public class SearchController {
 
     //This is just a placeholder while learning more Elastic
     @GetMapping("/advanced")
-    public List<Book> advancedSearch(
+    public Book advancedSearch(
             @RequestParam(name = "tittle", defaultValue = "", required = false)
             final String tittle,
             @RequestParam(name = "category", defaultValue = "", required = false)

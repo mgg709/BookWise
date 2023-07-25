@@ -4,7 +4,7 @@
         <div class="solution-books" >
             <div class="s-book" v-for="book in booksRecommended">
                 <BookCard :book="book" class="space"></BookCard>
-                <NormalButton textButton="Add to favourites"></NormalButton>
+                <NormalButton textButton="Add to favourites" @click="addFavourite(book)"></NormalButton>
             </div>
         </div>
     </div>
@@ -14,10 +14,17 @@
 import { mapState } from 'vuex';
 import NormalButton from '../components/NormalButton.vue'
 import BookCard from '../components/BookCard.vue'
+import axios from 'axios'
 export default {
     components: {
         BookCard,
         NormalButton
+    },
+    methods:{
+    async addFavourite(book){
+      const {data} = await axios.post(`http://localhost:8080/users/addFavourite?username=${this.$store.state.username}&booktitle=${book.title}`);
+      console.log(data);
+    }  
     },
     computed: mapState({
             booksRecommended() {

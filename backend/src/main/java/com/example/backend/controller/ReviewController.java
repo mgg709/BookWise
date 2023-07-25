@@ -41,7 +41,7 @@ public class ReviewController {
 
     @PostMapping("/addReview")
     public ResponseEntity<Review> addReview(@RequestBody Review review){
-        Review newReview = new Review(review.getUsername(), review.getTitlebook(), review.getAssessment(), review.getDescription(), review.getTitle());
+        Review newReview = new Review(review.getTitle(), review.getDescription(), review.getAssessment(), review.getTitlebook(), review.getUsername());
         return reviewService.addReview(newReview);
     }
 
