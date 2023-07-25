@@ -22,8 +22,12 @@ public class RecommendationController {
     private final RecommendationService recommendationService;
 
     @GetMapping
-    public ResponseEntity<List<Book>> recommendBooks(@RequestParam String title, @RequestParam String[] categories, @RequestParam Integer days){
-        return new ResponseEntity<List<Book>>(recommendationService.getRecommendations(title, categories, days), HttpStatus.OK);
+    public ResponseEntity<List<Book>> recommendBooks(@RequestParam String title,
+                                                     @RequestParam String[] categories,
+                                                     @RequestParam Integer days){
+
+        return new ResponseEntity<List<Book>>
+                (recommendationService.getRecommendations(title, categories, days), HttpStatus.OK);
     }
 
 }

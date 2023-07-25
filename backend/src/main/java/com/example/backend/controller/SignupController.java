@@ -6,10 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -45,8 +42,22 @@ public class SignupController {
         userService.save(user);
 
         session.setAttribute("login", true);
-        //TODO: Revisar si pasar el usuario a la sesion.
+
         return new ResponseEntity<String>(username, HttpStatus.OK);
+    }
+
+
+
+    @GetMapping("/user")
+    public boolean usernameExist(@RequestParam(name = "username", required = true) String username) {
+        return this.userService.usernameExist(username);
+    }
+
+
+
+    @GetMapping("/email")
+    public boolean emailExist(@RequestParam(name = "email", required = true) String email) {
+        return this.userService.emailExist(email);
     }
 
 }
