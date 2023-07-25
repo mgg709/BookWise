@@ -45,7 +45,7 @@ public class Book {
     Integer weight;
     @Field(type = FieldType.Integer, name = "yearOfEdition")
     Integer yearOfEdition;
-    @Field(type = FieldType.Nested, name = "adjectives")
+    @Field(type = FieldType.Text, name = "adjectives")
     List<String> adjectives;
     
 }
