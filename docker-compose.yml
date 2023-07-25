@@ -1,10 +1,27 @@
 version: '3'
 services:
+  elastic:
+      image: docker.elastic.co/elasticsearch/elasticsearch:8.7.0
+      environment:
+        - xpack.security.enabled=false
+        - discovery.type=single-node
+        - network.bind_host=0.0.0.0
+      ports:
+        - 9200:9200
+        - 9300:9300
+      healthcheck:
+        test: [ "CMD", "curl", "-u", "elastic:searchPathRules", "-f", "localhost:9200" ]
+        interval: 30s
+        retries: 10
+  
   backend:
     build: ./backend
     ports:
       - "8080:8080"
     restart: unless-stopped
+    depends_on:
+      - elastic
+
 
   frontend:
     container_name: front
@@ -15,3 +32,4 @@ services:
       - "8081:8080"
     depends_on:
       - backend
+

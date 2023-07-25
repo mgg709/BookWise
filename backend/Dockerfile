@@ -1,7 +1,11 @@
-FROM maven:3.8.4-openjdk-17-slim
-COPY . /app
+# Etapa de construcción
+FROM maven:3.8.4-openjdk-17-slim AS build
 WORKDIR /app
-RUN mvn clean package \
-    && mv target/backend-0.0.1-SNAPSHOT.jar /app.jar \
-    && rm -rf /app/target
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app.jar"]
+COPY . /app
+RUN mvn -f /app/pom.xml clean package -DskipTests
+
+# Etapa de ejecución
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /app/target/*.jar /app/backend-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","/app/backend-0.0.1-SNAPSHOT.jar"]

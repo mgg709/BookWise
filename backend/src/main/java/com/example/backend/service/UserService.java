@@ -3,9 +3,11 @@ package com.example.backend.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.backend.exceptions.LoginException;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import com.example.backend.model.Book;
 import com.example.backend.model.User;
 import com.example.backend.repositories.UserRepository;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
 
 @Service
 @RequiredArgsConstructor
@@ -28,27 +32,35 @@ public class UserService{
 
     public List<User> getUsers() { return userRepository.findAll(); }
 
+
+
     public User getUserByUsername(String username) { return userRepository.findItemByUsername(username); }
 
 
+
     /**
-     *
+     *  Check the login data. Throw an exception if there is some problem.
      * @param username
      * @param pass
-     * @return 0- Ok, 1- Wrong user, 2- Wrong password
+     * @throws LoginException
      */
-    public int login(String username, String pass) {
+    public ResponseEntity<String> login(String username, String pass, HttpSession session) throws LoginException {
 
         User user = this.userRepository.findItemByUsername(username);
 
+        //Wrong user
         if (user == null)
-            return 1;
-        if (!user.getPassword().equals(pass)) {
-            return 2;
-        }
+            throw new LoginException("User doesn't exist", HttpStatus.UNAUTHORIZED);
 
-        return 0;
+        //Wrong pass
+        if (!user.getPassword().equals(pass))
+            throw new LoginException("Wrong password", HttpStatus.UNAUTHORIZED);
+
+
+        session.setAttribute("login", true);
+        return new ResponseEntity<String>(username, HttpStatus.OK);
     }
+
 
 
     /**

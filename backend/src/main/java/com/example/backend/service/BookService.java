@@ -1,11 +1,12 @@
 package com.example.backend.service;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 import com.example.backend.model.Book;
 import com.example.backend.repositories.BookRepository;
 
+import javax.annotation.PostConstruct;
+
 
 @Service
 @RequiredArgsConstructor
@@ -25,19 +28,8 @@ public class BookService {
 
 
 
-
-
-    public void save(final Book book){
-        bookRepository.save(book);
-    }
-
-    public Book findByTitle(final String title){
-        return bookRepository.findByTitle(title);
-    }
-
-    public List<Book> findByCategory(final String category){
-        return bookRepository.findByCategory(category);
-    }
+    // Dealing with elasticsearch
+    //***********************************************************************
 
     /**
      * Read the csv to create the books.
@@ -49,10 +41,13 @@ public class BookService {
             List<Book> books = new ArrayList<Book>();
 
             try {
-                br = new BufferedReader(new FileReader("src/main/java/com/example/backend/dataset_last_version.csv"));
-                //Nos saltamos la primera línea para que no lea las labels del dataset
+
+                br = new BufferedReader(
+                        new InputStreamReader(new ClassPathResource("dataset.csv").getInputStream()));
+
+                //Skip the first line, so we don't read the labels.
                 String line = br.readLine();
-                //Primer libro
+
                 line = br.readLine();
                 // int index = 0;
                 while (null != line) {
@@ -90,23 +85,57 @@ public class BookService {
             return books;
         }
 
-        public void indexBooks() throws IOException{
-            List<Book> books = this.createAndGetBooks();
-            bookRepository.saveAll(books);
-        }
 
-        public List<Book> findAll(){
-            return bookRepository.findAll();
-        }
-
-        public PageImpl<Book> getTwentyBooks(int page){
-            PageRequest pageWithTwentyBooks = PageRequest.of(page, 20);
-            return new PageImpl<>(bookRepository.findAll(pageWithTwentyBooks).toList(), pageWithTwentyBooks, bookRepository.count());
-        }
+    public void indexBooks() throws IOException{
+        List<Book> books = this.createAndGetBooks();
+        bookRepository.saveAll(books);
+    }
 
 
     /**
-     * Returns the List of books that  (flexibly) match a certain string by tittle, category or description.
+     * Run indexing when dependency injection finish
+     * @throws IOException
+     */
+    @PostConstruct
+    public void indexStarting() {
+        try {
+            this.indexBooks();
+        }
+        catch (Exception ex) {
+            System.out.println("Indexing failed");
+        }
+    }
+
+
+
+
+    // Searches and utilities
+    //***********************************************************************
+
+    public void save(final Book book){ bookRepository.save(book); }
+
+    public void delete(final Book book) { bookRepository.delete(book); }
+
+    public Book findByTitle(final String title){
+        return bookRepository.findByTitle(title);
+    }
+
+    public List<Book> findByCategory(final String category){
+        return bookRepository.findByCategory(category);
+    }
+
+    public List<Book> findAll(){
+            return bookRepository.findAll();
+        }
+
+    public PageImpl<Book> getTwentyBooks(int page){
+        PageRequest pageWithTwentyBooks = PageRequest.of(page, 20);
+        return new PageImpl<>(bookRepository.findAll(pageWithTwentyBooks).toList(), pageWithTwentyBooks, bookRepository.count());
+    }
+
+
+    /**
+     * Returns the List of books that (flexibly) match a certain string by tittle, category or description.
      * @param string
      * @return
      */

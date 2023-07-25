@@ -1,3 +1,5 @@
+
+
 <template>
     <Header imageName="user"></Header>
     <div class="favourites-profile" id="section2">
