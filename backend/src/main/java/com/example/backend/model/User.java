@@ -1,7 +1,6 @@
 package com.example.backend.model;
 
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -10,8 +9,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.List;
 
 @Document(collection="User")
 @Data

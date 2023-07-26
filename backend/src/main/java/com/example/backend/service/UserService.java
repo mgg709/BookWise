@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import com.example.backend.model.Book;
 import com.example.backend.model.User;
 import com.example.backend.repositories.UserRepository;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 
