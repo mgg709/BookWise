@@ -1,10 +1,9 @@
-
-
 <template>
     <Header imageName="user"></Header>
     <div class="favourites-profile" id="section2">
-        <div v-for="book in books">
-            <BookCard :book="book"></BookCard>
+        <div class="f-book" v-for="book in books">
+            <BookCard class="f-space" :book="book"></BookCard>
+            <NormalButton textButton="Remove favourite" @click="removeFavourite(book)"></NormalButton>
         </div>
        
     </div>
@@ -13,11 +12,13 @@
 <script>
 import Header from "../components/ProfileHeader.vue"
 import BookCard from "../components/BookCard.vue"
+import NormalButton from "../components/NormalButton.vue"
 import axios from "axios"
 export default{
     components: {
         Header,
-        BookCard
+        BookCard,
+        NormalButton
     },
     data(){
         return{
@@ -28,6 +29,10 @@ export default{
         async getFavourites(){
             const {data} = await axios.get(`http://localhost:8080/users/getFavourites/${localStorage.getItem('username')}`);
             this.books = data;
+        },
+        async removeFavourite(book){
+            const {data} = await axios.delete(`http://localhost:8080/users/removeFavourite?username=${this.$store.state.username}&booktitle=${book.title}`);
+            this.books.splice(this.books.indexOf(book), 1);
         }
     },
     beforeMount(){
@@ -36,22 +41,23 @@ export default{
 }
 </script>
 <style>
-Footer{
-    width: 100%;
-  text-align: center;
-}
 
 .favourites-profile{
-    margin-top: 30px;
-    margin-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  margin: 50px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 100px;
 }
 
-.favourites-profile div{
-    margin-bottom: 15px;
-    width: 50%;
+.f-book{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+
+.f-book .f-space{
+    margin-bottom: 20px;
+}
+
 </style>

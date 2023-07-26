@@ -4,7 +4,7 @@
     <div class="ph-content">
       <div class="ph-image-container">
         <img :src="`src/assets/${imageName}.png`" alt="User profile img">
-        <p>USERNAME</p>
+        <p>{{username}}</p>
       </div>
     </div>
     <nav>
@@ -27,6 +27,11 @@
               type: String,
               required: true
           }
+      },
+      data() {
+        return{
+          username: localStorage.getItem('username')
+        }
       }
   }
 </script>
@@ -42,11 +47,12 @@
 .ph-image-container {
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .ph-image-container img {
-    width: 15.625em;
-    height: 15.625em;
+    width: 20%;
 }
 
 .ph-image-container p {
@@ -70,8 +76,6 @@ justify-content: center;
 
 nav ul li {
 margin-right: 2.813em; /* Espacio entre los elementos de navegación */
-border-radius: 10%;
-background-color: orangered;
 }
 
 nav ul li:last-child {
