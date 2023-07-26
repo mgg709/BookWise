@@ -29,7 +29,7 @@ export default {
   methods: {
     async getBooksBestRated() {
       try {
-        const {data} = await axios.get('http://localhost:8080/books/getTenBestRated')
+        const {data} = await axios.get('http://localhost:8080/books/best-rated')
         this.booksBestRated = data
       } catch (error) {
         console.log(error)
@@ -37,7 +37,7 @@ export default {
     },
     async getBooksBestSellings() {
       try {
-        const {data} = await axios.get('http://localhost:8080/books/getTenBestSellings')
+        const {data} = await axios.get('http://localhost:8080/books/best-sellers')
         this.booksBestSellings = data
       } catch (error) {
         console.log(error)
@@ -75,21 +75,15 @@ export default {
     display: flex;
     overflow: auto;
     border-radius: 8px;
-    max-width: 1200px;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+
   }
 
   .layer-list{
-  max-height: 100x;
-  border: 2px solid;
-  display: flex;
-  overflow-x: auto;
-}
-
-Footer{
-  width: 100%;
-  text-align: center;
-}
+    display: flex;
+    margin: 10px 10px;
+  }
 
   </style>
   
