@@ -1,6 +1,6 @@
 <template>
     <div class="content-bar">
-        <RouterLink class="logo" to="/">logo</RouterLink>
+        <RouterLink class="logo" to="/"><img class="nb-logo" src="../assets/main-logo.png" alt=""></RouterLink>
         <RouterLink class="selling-books-title" to="/selling">Top selling books</RouterLink>
         <RouterLink class="recommend-books-title" to="/recommendation">Recommend me a book</RouterLink>
         <input type="text" class="search-input" id="input-search" v-on:keyup.enter="submit()" placeholder="Título...">     
@@ -86,6 +86,11 @@ export default {
     height: 10vh;
     padding: 0 2rem;
     color: var(--color-text);
+}
+
+.nb-logo
+{
+    width: 60%;
 }
 
 .selling-books-title{
