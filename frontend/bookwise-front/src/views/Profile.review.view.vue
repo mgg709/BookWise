@@ -1,8 +1,9 @@
 <template>
     <Header imageName="user"></Header>
-    <div class="review-profile" id="section1">
-        <div v-for="review in reviews">
-            <ReviewCard :review = review></ReviewCard>
+    <div class="p-reviews" id="section1">
+        <div class="p-review" v-for="review in reviews">
+            <ReviewCard :review = review class="p-space"></ReviewCard>
+            <NormalButton textButton="Remove review" @click="removeReview(review)"></NormalButton>
         </div>
     </div>
 </template>
@@ -11,12 +12,14 @@
 import Header from "../components/ProfileHeader.vue"
 import ReviewCard from "../components/ReviewCard.vue"
 import Footer from "../components/Footer.vue"
+import NormalButton from "../components/NormalButton.vue";
 import axios from 'axios';
 export default {
     components: {
         Header,
         ReviewCard,
-        Footer
+        Footer,
+        NormalButton
     },
     data(){
         return{
@@ -28,6 +31,10 @@ export default {
             const {data} = await axios.get(`http://localhost:8080/reviews/user/${localStorage.getItem('username')}`);
             console.log(data);
             this.reviews = data;
+        },
+        async removeReview(review){
+            const {data} = await axios.delete(`http://localhost:8080/reviews?username=${this.$store.state.username}&bookTitle=${review.titlebook}&reviewTitle=${review.title}`);
+            this.reviews.splice(this.reviews.indexOf(review), 1);
         }
     },
     beforeMount(){
@@ -45,8 +52,23 @@ export default {
     align-items: center;
     margin-bottom: 30px;
 }
-Footer{
-    width: 100%;
-    text-align: center;
+
+.p-reviews{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.p-review{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.p-space{
+    margin-bottom: 20px;
 }
 </style>
