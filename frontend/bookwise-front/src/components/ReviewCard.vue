@@ -51,11 +51,10 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70%;
+    width: 800px;
     margin-top: 20px;
     box-shadow: 0px 0px 7px gray;
     padding: 30px 10px;
-    min-width: 50rem;
 }
 
 .rc-user-logo{
@@ -63,10 +62,11 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 15%;
 }
 
 .rc-user-logo img{
-    width: 10%;
+    width: 50%;
     margin-bottom: 20px;
 }
 
@@ -103,5 +103,9 @@ export default {
 .title-review{
     color: black;
     font-weight: bold;
+}
+.description-review{
+    padding-right: 20px;
+    overflow-y: auto;
 }
 </style>
