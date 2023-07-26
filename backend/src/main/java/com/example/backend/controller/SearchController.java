@@ -22,6 +22,16 @@ public class SearchController {
         return this.bookService.findByString(word);
     }
 
+    @GetMapping("/title/{title}")
+    public Book findByTitle(@PathVariable final String title){
+        return bookService.findByTitle(title);
+    }
+
+    @GetMapping("/category/{title}")
+    public List<Book> findByCategory(@PathVariable final String title){
+        Book book = bookService.findByTitle(title);
+        return bookService.findByCategory(book.getCategory());
+    }
 
     //This is just a placeholder while learning more Elastic
     @GetMapping("/advanced")

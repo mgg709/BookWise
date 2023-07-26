@@ -10,8 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-
-
 @Document(collection="User")
 @Data
 @AllArgsConstructor
