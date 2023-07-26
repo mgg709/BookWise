@@ -6,8 +6,8 @@
                 <button
                     v-for="index in 5"
                     :key="index"
-                    class="bv-star"
-                    :class="{ 'bv-star-selected': rating >= index }"
+                    class="wr-star"
+                    :class="{ 'wr-star-selected': rating >= index }"
                     @click="updateRating(index)" 
                 >
                     &#9734
@@ -99,7 +99,7 @@ export default {
     margin-block: 1.75rem;
 }
 
-.bv-star {
+.wr-star {
   font-size: 24px;
   color: #ccc;
   border: none;
@@ -107,7 +107,7 @@ export default {
   cursor: pointer;
 }
 
-.bv-star-selected {
+.wr-star-selected {
     font-size: 1.5rem;
     color: #ff9800;
     background-color: unset;
