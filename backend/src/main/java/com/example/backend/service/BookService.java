@@ -10,7 +10,9 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.elasticsearch.client.elc.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.Range;
+import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -116,7 +118,7 @@ public class BookService {
 
     public void delete(final Book book) { bookRepository.delete(book); }
 
-    public Book findByTitle(final String title){
+    public List<Book> findByTitle(final String title){
         return bookRepository.findByTitle(title);
     }
 
