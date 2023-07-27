@@ -11,14 +11,15 @@
           <span>{{ book.author }}</span>
           <span>{{ book.category }}</span>
           <div class="bv-rating-book-row">
-          <button class="bv-star">&#9734</button>
-          <button class="bv-star">&#9734</button>
-          <button class="bv-star">&#9734</button>
-          <button class="bv-star">&#9734</button>
-          <button class="bv-star">&#9734</button>
-      </div>
+            <button class="bv-star">&#9734</button>
+            <button class="bv-star">&#9734</button>
+            <button class="bv-star">&#9734</button>
+            <button class="bv-star">&#9734</button>
+            <button class="bv-star">&#9734</button>
+          </div>
           <span>{{ book.description }}</span>
         </div>
+        
       </div>
       <div class="book-reviews">
           <span>Reviews</span>
@@ -41,7 +42,6 @@ import ReviewCard from '../components/ReviewCard.vue'
 import NormalButton from '../components/NormalButton.vue'
 import { useRoute } from 'vue-router'
 import axios from 'axios'
-
 export default{
 name: 'BookView',
 components:{
@@ -61,7 +61,7 @@ methods: {
     const route = useRoute();
     const {data} = await axios.get(`http://localhost:8080/search/title/${route.params.title}`);
     this.book = data;
-    console.log(this.book);      
+    console.log(this.book);
   },
   fillStars(){
           let stars = this.book.stars.lowerBound.value;
@@ -104,7 +104,6 @@ mounted(){
 }
 </script>
 <style>
-
 .book-view-content{
 width: 100%;
 display: flex;
@@ -114,7 +113,6 @@ align-items: center;
 margin-bottom: 20px;
 height: 100%;
 }
-
 .book-details{
 display: flex;
 flex-direction: column;
@@ -122,22 +120,22 @@ justify-content: center;
 align-items: center;
 width: 80%;
 }
-
 .book-cover{
 display: flex;
 margin-left: 40px;
 }
-
 .book-cover img{
 width: 45%;
 }
-
 .book-data{
 display: flex;
 flex-direction: column;
 margin-left: 30px;
 }
 
+.book-data span{
+  text-align: justify;
+}
 .book-titulo{
 display: flex;
 justify-content: flex-start;
@@ -147,21 +145,17 @@ width: 100%;
   margin-right: 20px;
 }
 }
-
-
 .book-data span:first-child{
 font-size: 35px;
 }
-
 .book-data span:nth-child(3){
-background-color: #d9d9d9;
+background-color: #D9D9D9;
 width: 15%;
 display: flex;
 justify-content: center;
 align-items: center;
 padding: 3px;
 }
-
 .book-reviews{
 margin-top: 30px;
 display: flex;
@@ -169,27 +163,22 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 }
-
 .book-reviews span{
 margin-bottom: 20px;
 }
-
 .related-books{
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
 }
-
 .related-books span{
 margin-bottom: 20px;
 }
-
 .related-books img{
 width: 25%;
 margin: 10px 0px;
 }
-
 .bv-rating-book-row{
   display: flex;
   width: 100%;
@@ -197,18 +186,14 @@ margin: 10px 0px;
   justify-content: flex-end;
   transform: rotateY(180deg);
 }
-
 .bv-star{
   font-size: 1.5rem;
-  color: #ff9800;
+  color: #FF9800;
   background-color: unset;
   border: none;
 }
-
 .related-books img{
 width: 40%;
 margin: 10px 0px;
 }
-
-
 </style>

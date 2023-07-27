@@ -1,6 +1,7 @@
 <template>
     <div class="su-container">
     <div class="su-content">
+import { RouterLink } from 'vue-router';
         <h1>Sign-Up to BookWise</h1>
         <div class="action-buttons">
             <button class="primary-button sign-in-button">
@@ -18,27 +19,27 @@
         </div>
 
         <div class="email-log-in">
-            <input class="su-input" type="text" id="log-in" placeholder="Email">
+            <input class="su-input" type="text" id="log-in" placeholder="Email" v-model="email">
             <label for="log-in">Email</label>
         </div>
 
         <div class="username-log-in">
-            <input class="su-input" type="text" id="user-log-in" placeholder="Username">
+            <input class="su-input" type="text" id="user-log-in" placeholder="Username" v-model="username">
             <label for="user-log-in">Username</label>
         </div>
 
         <div class="password-log-in">
-            <input class="su-input" type="password" id="pass-log-in" placeholder="Password">
+            <input class="su-input" type="password" id="pass-log-in" placeholder="Password" v-model="password">
             <label for="pass-log-in">Password</label>
         </div>
 
         <div class="repeat-password-log-in">
-            <input class="su-input" type="password" id="rep-pass-log-in" placeholder="Repeat Password">
+            <input class="su-input" type="password" id="rep-pass-log-in" placeholder="Repeat Password" v-model="repeatPassword">
             <label for="rep-pass-log-in">Repeat Password</label>
         </div>
 
         <div class="action-buttons">
-            <button class="primary-button">Sign-Up</button>
+            <button class="primary-button" @click="signUp">Sign-Up</button>
         </div>
     </div>
     <div class="sign-up">
@@ -48,13 +49,30 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { RouterLink } from 'vue-router';
 export default {
     name: "LoginView",
+    data() {
+        return {
+            email: "",
+            username: "",
+            password: "",
+            repeatPassword: ""
+        };
+    },
     methods: {
-        redirectToSignUp(){
-        this.$router.push('/signup');
-    }
-    }
+        async signUp() {
+            if (this.password === this.repeatPassword) {
+                const { data } = await axios.post(`http://localhost:8080/signup?username=${this.username}&password=${this.password}&mail=${this.email}`, { withCredentials: true });
+                this.$router.push('/login');
+            }
+            else {
+                alert("Passwords do not match!");
+            }
+        }
+    },
+    components: { RouterLink }
 }
 </script>
 
