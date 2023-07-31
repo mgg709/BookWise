@@ -13,7 +13,7 @@ public interface BookRepository extends ElasticsearchRepository<Book, Integer>{
 
     public List<Book> findAll();
 
-    public List<Book> findByTitle(String title);
+    public Book findByTitle(String title);
 
     public List<Book> findByCategory(String Category);
 

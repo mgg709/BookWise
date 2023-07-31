@@ -47,7 +47,7 @@ public class RecommendationService {
         }
         books.removeAll(booksToRemove);
         if(!title.isEmpty()){
-        Book book = bookRepository.findByTitle(title).get(0);
+        Book book = bookRepository.findByTitle(title);
        
         for (Book b : books) {
             if (b.getCategory().equals(book.getCategory())) {

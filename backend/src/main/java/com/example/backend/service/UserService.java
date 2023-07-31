@@ -103,10 +103,9 @@ public class UserService{
         List<String> favourites = user.getFavourites();
         List<Book> books = new ArrayList<Book>();
         for (String title: favourites){
-            books.add(bookService.findByTitle(title).get(0));
+            books.add(bookService.findByTitle(title));
         }
         return books;
     }
-
 
 }
