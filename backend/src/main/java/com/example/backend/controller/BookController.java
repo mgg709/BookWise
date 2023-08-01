@@ -30,7 +30,7 @@ public class BookController {
     }
 
 
-    @GetMapping("/twentyBooks/{page}")
+    @GetMapping("/page/{page}")
     public PageImpl<Book> getTwentyBooks(@PathVariable final int page) {
 
         return bookService.getTwentyBooks(page);

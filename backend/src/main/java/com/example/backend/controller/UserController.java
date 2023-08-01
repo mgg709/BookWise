@@ -30,21 +30,19 @@ public class UserController {
         return ResponseEntity.ok(userService.getUsers());
     }
 
-    @PostMapping("/addFavourite")
+    @PostMapping("/favourites")
     public void addFavourites(@RequestParam String username,@RequestParam String booktitle){
         userService.addFavourites(username, booktitle);
     }
 
-    @DeleteMapping("/removeFavourite")
+    @DeleteMapping("/favourites")
     public void removeFavourites(@RequestParam String username,@RequestParam String booktitle){
         userService.removeFavourites(username, booktitle);
     }
     
-    @GetMapping("/getFavourites/{username}")
+    @GetMapping("/favourites/{username}")
     public ResponseEntity<List<Book>> getFavourites(@PathVariable String username){
         return ResponseEntity.ok(userService.getFavourites(username));
     }
-
-   
     
 }

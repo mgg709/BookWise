@@ -33,17 +33,4 @@ public class SearchController {
         return bookService.findByCategory(book.getCategory());
     }
 
-    //This is just a placeholder while learning more Elastic
-    @GetMapping("/advanced")
-    public Book advancedSearch(
-            @RequestParam(name = "tittle", defaultValue = "", required = false)
-            final String tittle,
-            @RequestParam(name = "category", defaultValue = "", required = false)
-            final String category) {
-
-        return this.bookService.findByTitle(tittle);
-    }
-
-
-
 }
