@@ -27,11 +27,12 @@ export default{
     },
     methods: {
         async getFavourites(){
-            const {data} = await axios.get(`http://localhost:8080/users/getFavourites/${localStorage.getItem('username')}`);
+            const {data} = await axios.get(`http://localhost:8080/users/favourites/${localStorage.getItem('username')}`);
+            console.log(data);
             this.books = data;
         },
         async removeFavourite(book){
-            const {data} = await axios.delete(`http://localhost:8080/users/removeFavourite?username=${this.$store.state.username}&booktitle=${book.title}`);
+            const {data} = await axios.delete(`http://localhost:8080/users/favourites?username=${this.$store.state.username}&booktitle=${book.title}`);
             this.books.splice(this.books.indexOf(book), 1);
         }
     },

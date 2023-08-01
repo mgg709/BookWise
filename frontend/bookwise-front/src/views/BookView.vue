@@ -84,7 +84,7 @@ methods: {
           console.log(data);
    },
   async addFavourite(){
-    const {data} = await axios.post(`http://localhost:8080/users/addFavourite?username=${this.$store.state.username}&booktitle=${this.book.title}`);
+    const {data} = await axios.post(`http://localhost:8080/users/favourites?username=${this.$store.state.username}&booktitle=${this.book.title}`);
     console.log(data);
   },
   redirectToWriteReview(titlebook) {
