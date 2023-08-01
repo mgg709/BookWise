@@ -1,7 +1,9 @@
 <template>
     <div class="container-book-card" :style="{width: widthSize}">
         <img :src="book.imageLink" alt="Portada del libro" @click="redirectToBook(book.title)">
-        <p>{{ book.title }}</p>
+        <div class="book-card-tittle">
+            <p>{{ book.title }}</p>
+        </div>
         <div class="rating-book-row">
             <button class="star">&#9734</button>
             <button class="star">&#9734</button>
@@ -57,13 +59,16 @@ export default {
     margin:0px;
 }
 .container-book-card img{
-    width: 60%;
+    width: 70%;
+    height: 300px;
     border-radius: 5px;
     padding-top: 20px;
 }
-.container-book-card p{
-    font-size: 1.2rem;
-    margin: 10px 0px;
+.book-card-tittle{
+    width: 200px; /* Ancho fijo del contenedor */
+    overflow: hidden; /* Ocultar contenido que exceda el ancho */
+    white-space: nowrap; /* Evitar que el texto se rompa en varias líneas */
+    text-overflow: ellipsis;
 }
 .rating-book-row{
     display: flex;

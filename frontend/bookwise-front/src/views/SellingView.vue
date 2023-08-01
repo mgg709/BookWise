@@ -1,42 +1,56 @@
-<script setup>
-import BookCard from '../components/BookCard.vue'
-import Footer from '../components/Footer.vue'
-</script>
-
 <template>
-  <h1>Top selling books</h1>
+  <span>Top selling books</span>
   <div class="top-sellings-books">
-    <div class="layer-list">
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
+    <div class="layer-list" v-for="book in booksBestSellings">
+      <BookCard :book=book></BookCard>
     </div>
   </div>
-  <h1>Top best rated</h1>
+  <span>Top best rated</span>
   <div class="top-best-rated">
-    <div class="layer-list">
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
-      <BookCard imageName="template-book-cover"></BookCard>
+    <div class="layer-list" v-for="book in booksBestRated">
+      <BookCard :book=book></BookCard>
     </div>
   </div>
 </template>
-  
-  <style>
+<script>
+import BookCard from '@/components/BookCard.vue'
+import axios from 'axios'
+export default {
+  name: 'SellingView',
+  components: {
+    BookCard,
+  },
+  data() {
+    return {
+      booksBestRated: [],
+      booksBestSellings: [],
+    }
+  },
+  methods: {
+    async getBooksBestRated() {
+      try {
+        const {data} = await axios.get('http://localhost:8080/books/best-rated')
+        this.booksBestRated = data
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async getBooksBestSellings() {
+      try {
+        const {data} = await axios.get('http://localhost:8080/books/best-sellers')
+        this.booksBestSellings = data
+      } catch (error) {
+        console.log(error)
+      }
+    },
+  },
+  mounted() {
+    this.getBooksBestRated(),
+    this.getBooksBestSellings()
+  },
+}
+</script>  
+<style>
   *{
     margin:0;
     padding: 0;
@@ -61,21 +75,15 @@ import Footer from '../components/Footer.vue'
     display: flex;
     overflow: auto;
     border-radius: 8px;
-    max-width: 1200px;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+
   }
 
   .layer-list{
-  max-height: 100x;
-  border: 2px solid;
-  display: flex;
-  overflow-x: auto;
-}
-
-Footer{
-  width: 100%;
-  text-align: center;
-}
+    display: flex;
+    margin: 10px 10px;
+  }
 
   </style>
   

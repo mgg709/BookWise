@@ -7,13 +7,20 @@ import { createStore } from 'vuex'
 
 const store = createStore({
                             state(){
-                                return {searchBooks:[], recommendations:[]}
+                                return {searchBooks:[], recommendations:[], username: String}
                                 },mutations: {
                                     passBooks(state, books){
                                         state.searchBooks = books;
                                     },
                                     recommendBooks(state, books){
                                         state.recommendations = books;
+                                    },
+                                    loginUser(state, username){
+                                        state.username = username;
+                                    }
+                                },getters:{
+                                    username(state){
+                                        return state.username;
                                     }
                                 }
                         });

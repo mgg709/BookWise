@@ -25,6 +25,8 @@ public class Book {
     String category;
     @Field(type = FieldType.Double, name = "price")
     Double price;
+    @Field(type = FieldType.Integer, name = "avilability")
+    Integer avilability;
     @Field(type = FieldType.Integer, name = "numberOfReviews")
     Integer numberOfReviews;
     @Field(type = FieldType.Text, name = "description")
@@ -43,7 +45,7 @@ public class Book {
     Integer weight;
     @Field(type = FieldType.Integer, name = "yearOfEdition")
     Integer yearOfEdition;
-    @Field(type = FieldType.Nested, name = "adjectives")
+    @Field(type = FieldType.Text, name = "adjectives")
     List<String> adjectives;
     
 }

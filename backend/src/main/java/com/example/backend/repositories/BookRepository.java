@@ -13,11 +13,18 @@ public interface BookRepository extends ElasticsearchRepository<Book, Integer>{
 
     public List<Book> findAll();
 
-    public List<Book> findByTitle(String title);
+    public Book findByTitle(String title);
 
     public List<Book> findByCategory(String Category);
 
     @Query("{\"multi_match\" : {\"query\":\"?0\",\"fields\": [ \"title\", \"category\", \"description\" ] } }")
     public List<Book> findByString (String string);
+
+    //TODO: Review this
+    @Query("{\"bool\": {\"should\": [" +
+            "{\"match\": {\"title\": \"Light\"}}," +
+            "{\"match\": {\"category\": \"Poetry\"}}" +
+            "]}}")
+    public List<Book> advanced(String tittle, String category, String description);
 
 }

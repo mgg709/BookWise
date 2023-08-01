@@ -22,18 +22,15 @@ public class SearchController {
         return this.bookService.findByString(word);
     }
 
-
-    //This is just a placeholder while learning more Elastic
-    @GetMapping("/advanced")
-    public List<Book> advancedSearch(
-            @RequestParam(name = "tittle", defaultValue = "", required = false)
-            final String tittle,
-            @RequestParam(name = "category", defaultValue = "", required = false)
-            final String category) {
-
-        return this.bookService.findByTitle(tittle);
+    @GetMapping("/title/{title}")
+    public Book findByTitle(@PathVariable final String title){
+        return bookService.findByTitle(title);
     }
 
-
+    @GetMapping("/category/{title}")
+    public List<Book> findByCategory(@PathVariable final String title){
+        Book book = bookService.findByTitle(title);
+        return bookService.findByCategory(book.getCategory());
+    }
 
 }

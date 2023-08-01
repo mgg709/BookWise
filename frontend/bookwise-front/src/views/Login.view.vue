@@ -18,17 +18,17 @@
         </div>
 
         <div class="email-log-in">
-            <input type="text" id="log-in" placeholder="Email">
-            <label for="log-in">Email or username</label>
+            <input type="text" id="log-in" placeholder="Username" v-model="username">
+            <label for="log-in">Username</label>
         </div>
 
         <div class="password-log-in">
-            <input type="password" id="pass-log-in" placeholder="Password">
+            <input type="password" id="pass-log-in" placeholder="Password" v-model="password">
             <label for="pass-log-in">Password</label>
         </div>
 
         <div class="action-buttons">
-            <button class="primary-button">Next</button>
+            <button class="primary-button" @click="signIn(username, password)">Next</button>
             <button class="secondary-button">Forgot password?</button>
         </div>
     </div>
@@ -39,12 +39,30 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     name: "LoginView",
+    data(){
+        return{
+            username: '',
+            password: ''
+        }
+    },
     methods: {
         redirectToSignUp(){
         this.$router.push('/signup');
-    }
+        },
+        signIn(user, pass){
+            axios.post(`http://localhost:8080/login?user=${user}&password=${pass}`).then
+            (data => {
+            localStorage.setItem('username', data.data);
+            this.$store.commit('loginUser', localStorage.getItem('username'));
+            this.$router.push("/");
+            }
+            ).catch(error => {
+            console.log(error);
+            });
+        }
     }
 }
 </script>
