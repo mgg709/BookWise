@@ -3,7 +3,7 @@
   <div class="ph-container">
     <div class="ph-content">
       <div class="ph-image-container">
-        <img :src="`src/assets/${imageName}.png`" alt="User profile img">
+        <img src="../assets/user.png" alt="User profile img">
         <p>{{username}}</p>
       </div>
     </div>
