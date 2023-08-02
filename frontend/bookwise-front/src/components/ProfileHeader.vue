@@ -11,8 +11,10 @@
       <ul>
         <!--li><a title="Reviews" accesskey="R" tabindex="1" href="#section1">Reviews</a></li>
         <li><a title="Favourites" accesskey="V" tabindex="2" href="#section2">Favourites</a></li-->
-        <li><a title="Reviews" accesskey="R" tabindex="1" href="review">Reviews</a></li>
-        <li><a title="Favourites" accesskey="V" tabindex="2" href="favourite">Favourites</a></li>
+        <!-- <li><a title="Reviews" accesskey="R" tabindex="1" href="review">Reviews</a></li>
+        <li><a title="Favourites" accesskey="V" tabindex="2" href="favourite">Favourites</a></li> -->
+        <li><RouterLink to="/review">Reviews</RouterLink></li>
+        <li><RouterLink to="/favourite">Favourites</RouterLink></li>
       </ul>
     </nav>
   </div>
@@ -20,20 +22,24 @@
 </template>
 
 <script>
+import { RouterLink } from 'vue-router';
+
   export default {
-      name: "Profile",
-      props: {
-          imageName: {
-              type: String,
-              required: true
-          }
-      },
-      data() {
-        return{
-          username: localStorage.getItem('username')
+    name: "Profile",
+    props: {
+        imageName: {
+            type: String,
+            required: true
         }
-      }
-  }
+    },
+    data() {
+        return {
+            username: localStorage.getItem('username')
+        };
+    },
+    components: { RouterLink }
+}
+
 </script>
 
 <style>
