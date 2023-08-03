@@ -18,13 +18,13 @@
         </div>
 
         <div class="email-log-in">
-            <input type="text" id="log-in" placeholder="Username" v-model="username">
-            <label for="log-in">Username</label>
+            <input type="text" id="log-in" placeholder="Username" class="login-input" v-model="username">
+            <label class="login-label" for="log-in">Username</label>
         </div>
 
         <div class="password-log-in">
-            <input type="password" id="pass-log-in" placeholder="Password" v-model="password">
-            <label for="pass-log-in">Password</label>
+            <input type="password" id="pass-log-in" placeholder="Password"  class="login-input" v-model="password">
+            <label class="login-label" for="pass-log-in">Password</label>
         </div>
 
         <div class="action-buttons">
@@ -33,37 +33,37 @@
         </div>
     </div>
     <div class="sign-up">
-        <p>Don't have an account? <a href="signup">Sign up</a></p>
+        <p>Don't have an account? <RouterLink to="/signup">Sign up</RouterLink></p>
     </div>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
+import { RouterLink } from 'vue-router';
 export default {
     name: "LoginView",
-    data(){
-        return{
+    data() {
+        return {
             username: '',
             password: ''
-        }
+        };
     },
     methods: {
-        redirectToSignUp(){
-        this.$router.push('/signup');
+        redirectToSignUp() {
+            this.$router.push('/signup');
         },
-        signIn(user, pass){
-            axios.post(`http://localhost:8080/login?user=${user}&password=${pass}`).then
-            (data => {
-            localStorage.setItem('username', data.data);
-            this.$store.commit('loginUser', localStorage.getItem('username'));
-            this.$router.push("/");
-            }
-            ).catch(error => {
-            console.log(error);
+        signIn(user, pass) {
+            axios.post(`http://localhost:8080/login?user=${user}&password=${pass}`).then(data => {
+                localStorage.setItem('username', data.data);
+                this.$store.commit('loginUser', localStorage.getItem('username'));
+                this.$router.push("/");
+            }).catch(error => {
+                console.log(error);
             });
         }
-    }
+    },
+    components: { RouterLink }
 }
 </script>
 
@@ -139,11 +139,11 @@ export default {
     height: 1.5rem;
 }
 
-input::placeholder{
+.login-input::placeholder{
     opacity: 0;
 }
 
-input + label{
+.login-input + .login-label{
     position: absolute;
     top: 1.25rem;
     left: 0.625rem;
@@ -153,16 +153,16 @@ input + label{
     transition: 200ms ease;
 }
 
-input:focus{
+.login-input:focus{
     outline: 0.063rem solid #1d9bf0;
 }
 
-input:focus + label{
+.login-input:focus + .login-label{
     color: #1d9bf0;
 }
 
-input:not(:placeholder-shown) + label,
-input:focus + label{
+.login-input:not(:placeholder-shown) + .login-label,
+.login-input:focus + .login-label{
     top: 0.375rem;
     left: 0.625rem;
     font-size: 0.75rem;

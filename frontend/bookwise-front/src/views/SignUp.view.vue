@@ -1,7 +1,6 @@
 <template>
     <div class="su-container">
     <div class="su-content">
-import { RouterLink } from 'vue-router';
         <h1>Sign-Up to BookWise</h1>
         <div class="action-buttons">
             <button class="primary-button sign-in-button">
@@ -43,7 +42,7 @@ import { RouterLink } from 'vue-router';
         </div>
     </div>
     <div class="sign-up">
-        <p>Already have an account? <a href="login">Sign in</a></p>
+        <p>Already have an account? <RouterLink to="/login">Sign in</RouterLink></p>
     </div>
     </div>
 </template>
